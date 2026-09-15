@@ -1,0 +1,975 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="冰红茶">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="介绍 RabbitMQ是采用Erlang编程语言实现的高级消息队列协议AMQP（Advanced Message Queuing Protocol）的开源消息队列中间件 作用 应用解耦 流量削峰 异步处理 缓存存储 消息通信 提高系统扩展性    特点 可靠性：通过持久化和传输确认等来确保消息传递的可靠性 扩展性：多个RabbitMQ节点可以组成集群 高可用：队列可以在RabbitMQ集群中设置镜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ介绍及部署">
+<meta property="og:url" content="http://example.com/2022/11/16/RabbitMQ%E4%BB%8B%E7%BB%8D%E5%8F%8A%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="WanOn丸子不会飞">
+<meta property="og:description" content="介绍 RabbitMQ是采用Erlang编程语言实现的高级消息队列协议AMQP（Advanced Message Queuing Protocol）的开源消息队列中间件 作用 应用解耦 流量削峰 异步处理 缓存存储 消息通信 提高系统扩展性    特点 可靠性：通过持久化和传输确认等来确保消息传递的可靠性 扩展性：多个RabbitMQ节点可以组成集群 高可用：队列可以在RabbitMQ集群中设置镜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZrJzD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZr2Lj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZrqOJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZrXwR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZrzY6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZsiOH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZs1mj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZsYt0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZsa1U.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZs29K.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZs5Bd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZsH4P.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZyVu4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZyeb9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZynER.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZyl8K.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/16/zZyYbd.png">
+<meta property="article:published_time" content="2022-11-16T07:25:02.000Z">
+<meta property="article:modified_time" content="2023-02-10T06:12:20.309Z">
+<meta property="article:author" content="冰红茶">
+<meta property="article:tag" content="MQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/11/16/zZrJzD.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>RabbitMQ介绍及部署 - WanOn丸子不会飞</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>WanOn丸子不会飞</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RabbitMQ介绍及部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-16 15:25" pubdate>
+          2022年11月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">RabbitMQ介绍及部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li>RabbitMQ是采用Erlang编程语言实现的高级消息队列协议AMQP（Advanced Message Queuing Protocol）的开源消息队列中间件</li>
+<li>作用<ul>
+<li>应用解耦</li>
+<li>流量削峰</li>
+<li>异步处理</li>
+<li>缓存存储</li>
+<li>消息通信</li>
+<li>提高系统扩展性</li>
+</ul>
+</li>
+</ul>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ol>
+<li>可靠性：通过持久化和传输确认等来确保消息传递的可靠性</li>
+<li>扩展性：多个RabbitMQ节点可以组成集群</li>
+<li>高可用：队列可以在RabbitMQ集群中设置镜像，如此一来即使部分节点挂掉，队列仍然可以使用</li>
+<li>多种协议支持：原生支持AMQP，也能支持STOMP、MQTT等协议</li>
+<li>丰富的客户端：常用的编程语言都有客户端</li>
+<li>管理界面：自带一个webUI界面</li>
+<li>插件机制：RabbitMQ自己提供了多种插件，可以按需扩展Plugins</li>
+</ol>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>生产消费模型，用于实现消息的接收、存储、转发<br><img src="https://s1.ax1x.com/2022/11/16/zZrJzD.png" srcset="/img/loading.gif" lazyload alt="示意图"></p>
+<ul>
+<li>Producer(生产者)：消息的生产方，投递方。</li>
+<li>Consumer(消费者)：消息的消费者。</li>
+<li>RabbitMQ Broker(RabbitMQ代理)：RabbitMQ服务节点。在单机环境中，就是代表RabbitMQ服务器。</li>
+<li>Queue(队列)：在RabbitMQ中Queue是存储消息数据的唯一形式。</li>
+<li>Binding(绑定)：在RabbitMQ中的Binding是Exchange将message路由给Queue所需遵循的规则。如果要指定“交换机E将消息路由给队列Q”，那么Q就需要与E进行绑定。绑定操作需要定义一个可选的路由键（routing key）属性给某些类型的交换机。路由键的意义在于从发送给交换机的众多消息中选择出某些消息，将其路由给绑定的队列。</li>
+<li>RoutingKey(路由键)：消息投递给交换机，通常会指定一个RoutingKey，通过这个路由键来明确消息的路由规则。RoutingKey 通常是生产者和消费者有协商一致的key策略，消费者就可以合法从生产者手中获取数据。这个RoutingKey主要当Exchange交换机模式为设定为direct和topic模式的时候使用，fanout模式不使用RoutingKey。</li>
+<li>Exchange(交换机)：生产者将消息发送给交换机，再由交换机将消息路由到对应的队列中。交换机有四种类型：fanout、direct、topic、headers</li>
+</ul>
+<h1 id="Exchange"><a href="#Exchange" class="headerlink" title="Exchange"></a>Exchange</h1><p>常用类型：fanout、direct、topic</p>
+<h2 id="fanout"><a href="#fanout" class="headerlink" title="fanout"></a>fanout</h2><ol>
+<li>fanout：扇形交换机</li>
+<li>其将发送带该类型交换机的消息路由到所有与该交换机绑定的队列中，如同一个扇形一样扩散给各个队列</li>
+<li>fanout类型的交换机会忽略RoutingKey的存在，将消息直接广播到绑定的所有队列中<br><img src="https://s1.ax1x.com/2022/11/16/zZr2Lj.png" srcset="/img/loading.gif" lazyload alt="扇形示意"></li>
+</ol>
+<h2 id="direct"><a href="#direct" class="headerlink" title="direct"></a>direct</h2><ol>
+<li>direct理解为直连交换机</li>
+<li>根据消息携带的RoutingKey将消息投递到相应的队列中</li>
+<li>direct类型的交换机(exchange)是RabbitMQ Broker的默认类型，它有一个特别的属性对一些简单的应用来说是非常有用的，在使用这个类型的Exchange时，可以不必指定routing key的名字，在此类型下创建的Queue有一个默认的routing key，这个routing key一般同Queue同名<br><img src="https://s1.ax1x.com/2022/11/16/zZrqOJ.png" srcset="/img/loading.gif" lazyload alt="直连示意"></li>
+</ol>
+<h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><ol>
+<li>把topic理解为主题交换机</li>
+<li>topic交换机在RoutingKey和BindKey匹配规则上更加灵活，同样是将消息路由到RoutingKey和BindKey相匹配的队列中，但是匹配规则有如下特点</li>
+<li>RoutingKey是一个使用.分割的字符串，例如：go.log.info、java.log.error</li>
+<li>BindKey也是一个使用.分割的字符串，但是在BindKey中可以使用两种特殊字符*和#用于匹配一个单词，#用于匹配多规格单词（零个或多个单词）</li>
+<li>RoutingKey和BindKey是一种“模糊匹配”，那么一个消息可能会被发送到一个或者多个队列中</li>
+<li>无法匹配的消息将会被丢弃或者返回给生产者<br><img src="https://s1.ax1x.com/2022/11/16/zZrXwR.png" srcset="/img/loading.gif" lazyload alt="topic示意"></li>
+</ol>
+<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1><h2 id="消费生产流程"><a href="#消费生产流程" class="headerlink" title="消费生产流程"></a>消费生产流程</h2><ol>
+<li>消息生产者与RabbitMQ Broker建立一个连接，建立连接之后开启一个信道channel</li>
+<li>声明一个交换机，并设置与其相关的属性（交换机类型、持久化等）</li>
+<li>声明一个队列，并设置其相关属性（排他性、持久化、自动删除等）</li>
+<li>通过路由键将交换机和队列绑定</li>
+<li>消息生产者发送消息给RabbitMQ Broker，消息中包含了路由键、交换机等信息，交换机根据接收的路由键查找匹配的队列</li>
+<li>查找匹配成功，将消息存储到队列中</li>
+<li>查找匹配失败，根据生产者配置的属性选择丢弃或者退回给生产者</li>
+<li>关闭信道channel，关闭连接</li>
+</ol>
+<h2 id="消息消费流程"><a href="#消息消费流程" class="headerlink" title="消息消费流程"></a>消息消费流程</h2><ol>
+<li>消费者与RabbitMQ Broker建立连接，连接建立之后开启一个channel</li>
+<li>消费者向RabbitMQ Broker请求消费者相应队列中的消息</li>
+<li>等待RabbitMQ Broker回应并投递相应队列中的消息，消费者接收消息</li>
+<li>消费者确认接收消息（ACK），RabbitMQ Broker删除已经确认的消息</li>
+<li>关闭信道channel，关闭连接</li>
+</ol>
+<h1 id="部署流程"><a href="#部署流程" class="headerlink" title="部署流程"></a>部署流程</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull rabbitmq<br></code></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2022/11/16/zZrzY6.png" srcset="/img/loading.gif" lazyload alt="pull示意"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker images<br></code></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2022/11/16/zZsiOH.png" srcset="/img/loading.gif" lazyload alt="查看镜像示意"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run<br></code></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2022/11/16/zZs1mj.png" srcset="/img/loading.gif" lazyload alt="运行示意"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker ps<br></code></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2022/11/16/zZsYt0.png" srcset="/img/loading.gif" lazyload alt="查看进程"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -id --hostname myrabbit --name rabbitmq1 -p 15672:15672 -p 5672:5672 rabbitmq（安装mq WebUI界面插件）<br></code></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2022/11/16/zZsa1U.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
+<ul>
+<li><p>进入UI界面 ip+端口 默认账户名密码guest<br><img src="https://s1.ax1x.com/2022/11/16/zZs29K.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
+</li>
+<li><p>点击channel如果报错，重新进入mq镜像修改<br><img src="https://s1.ax1x.com/2022/11/16/zZs5Bd.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
+</li>
+<li><p>正常进入channel<br><img src="https://s1.ax1x.com/2022/11/16/zZsH4P.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
+</li>
+</ul>
+<h1 id="Python使用MQ-demo"><a href="#Python使用MQ-demo" class="headerlink" title="Python使用MQ demo"></a>Python使用MQ demo</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> pika<br><br><span class="hljs-string">&quot;MQ demo&quot;</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MqOperator</span>(<span class="hljs-title class_ inherited__">HeartBeat</span>):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, username, pwd, host</span>):<br>        <span class="hljs-variable language_">self</span>.__user_pwd = pika.PlainCredentials(username, pwd)<br>        <span class="hljs-variable language_">self</span>.__s_conn = pika.BlockingConnection(pika.ConnectionParameters(host,<br>                                                                          heartbeat=<span class="hljs-number">60</span>,<br>                                                                          socket_timeout=<span class="hljs-number">5</span>,<br>                                                                          credentials=<span class="hljs-variable language_">self</span>.__user_pwd))<br>        <span class="hljs-built_in">super</span>(MqOperator, <span class="hljs-variable language_">self</span>).__init__(connection=<span class="hljs-variable language_">self</span>.__s_conn)<br><br>        <span class="hljs-comment"># self.host = host</span><br>        <span class="hljs-comment"># 创建链接</span><br>        <span class="hljs-comment"># self.__s_conn = pika.BlockingConnection(pika.ConnectionParameters(self.host,</span><br>        <span class="hljs-comment">#                                                                   heartbeat=60,</span><br>        <span class="hljs-comment">#                                                                   socket_timeout=5,</span><br>        <span class="hljs-comment">#                                                                   credentials=self.__user_pwd))</span><br>        <span class="hljs-variable language_">self</span>.__channel = <span class="hljs-variable language_">self</span>.__s_conn.channel()<br>        <br>    <span class="hljs-comment"># 生产者</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">product_message</span>(<span class="hljs-params">self, queue_name, routing_key, body, exchange=<span class="hljs-string">&#x27;&#x27;</span></span>):<br>        <span class="hljs-keyword">try</span>:<br><br>            <span class="hljs-variable language_">self</span>.__channel.queue_declare(queue=queue_name)  <span class="hljs-comment"># 声明队列</span><br>            <span class="hljs-variable language_">self</span>.__channel.basic_publish(exchange=exchange,  <span class="hljs-comment"># 交换机</span><br>                                         routing_key=routing_key,  <span class="hljs-comment"># 路由键 写明将消息发往哪个队列，本例是将消息发往队列hello</span><br>                                         body=body,<br>                                         properties=pika.BasicProperties(delivery_mode=<span class="hljs-number">1</span>))  <span class="hljs-comment"># 生产者要发送的消息</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;【生产者】往【<span class="hljs-subst">&#123;queue_name&#125;</span>】队列发送了【<span class="hljs-subst">&#123;body&#125;</span>】&quot;</span>)<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;error&quot;</span>)<br>        <span class="hljs-keyword">finally</span>:<br>            <span class="hljs-comment"># self.__s_conn.close() # 发送完消息关闭链接</span><br>            <span class="hljs-keyword">pass</span><br>        <br>    <span class="hljs-comment"># 消费者</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">consumer_message</span>(<span class="hljs-params">self, queue_name</span>):<br>        <span class="hljs-keyword">try</span>:<br>            <span class="hljs-comment"># self.__channel.queue_declare(queue=queue_name,durable=True)  # 声明队列</span><br>            <span class="hljs-variable language_">self</span>.__channel.basic_consume(on_message_callback=<span class="hljs-variable language_">self</span>.callback, queue=queue_name, auto_ack=<span class="hljs-literal">False</span>)<br>            <span class="hljs-variable language_">self</span>.start()<br>            <span class="hljs-variable language_">self</span>.startHeartBeat()<br>            <span class="hljs-variable language_">self</span>.__channel.start_consuming()<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;connect error&quot;</span>)<br>        <span class="hljs-keyword">finally</span>:<br>            <span class="hljs-comment"># self.__s_conn.close()  # 接收完消息关闭链接</span><br>            <span class="hljs-keyword">pass</span><br>        <br>    <span class="hljs-comment"># 消费时回调函数</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">callback</span>(<span class="hljs-params">self, channel, method, properties, body</span>):<br><br>        <span class="hljs-comment"># body = body.decode(&#x27;urf-8&#x27;)</span><br>        <span class="hljs-comment"># try:</span><br>        <span class="hljs-comment">#     print(f&quot;消费数据：&#123;body&#125;&quot;)</span><br>        <span class="hljs-comment"># except Exception as e:</span><br>        <span class="hljs-comment">#     print(f&quot;error:&#123;e&#125;&quot;)</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;消费者 recv:<span class="hljs-subst">&#123;body&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">import</span> time<br>        time.sleep(<span class="hljs-number">1</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;ok&quot;</span>)<br>        channel.basic_ack(delivery_tag=method.delivery_tag)<br></code></pre></td></tr></table></figure>
+<h1 id="MQ-WebUI界面"><a href="#MQ-WebUI界面" class="headerlink" title="MQ-WebUI界面"></a>MQ-WebUI界面</h1><ul>
+<li><p>新建队列<br><img src="https://s1.ax1x.com/2022/11/16/zZyVu4.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>点击队列进入队列内，<br><img src="https://s1.ax1x.com/2022/11/16/zZyeb9.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>发送消息<br><img src="https://s1.ax1x.com/2022/11/16/zZynER.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>消息发送成功，查看队列消息<br><img src="https://s1.ax1x.com/2022/11/16/zZyl8K.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>拿demo消费，查看消费内容<br><img src="https://s1.ax1x.com/2022/11/16/zZyYbd.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>以上一个简单的生产消费流程走完</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MQ/" class="print-no-link">#MQ</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RabbitMQ介绍及部署</div>
+      <div>http://example.com/2022/11/16/RabbitMQ介绍及部署/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>冰红茶</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/18/Redis%E5%85%A5%E9%97%A8/" title="Redis入门">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/12/Jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E5%8E%8B%E6%B5%8B%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" title="Jmeter分布式压测环境部署">
+                        <span class="hidden-mobile">Jmeter分布式压测环境部署</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      豫ICP备2022025726号
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
