@@ -19,12 +19,12 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装步骤(非客户端) 前提python环境最好3.6及以上  python安装好后，pip命令执行 pip3 install mitmproxy  mitm安装好后，有三种启动模式  mitmdump(什么都不显示，后台运行)结合自定义脚本使用 mitmproxy(命令行交互界面) mitmweb(webGUI界面友好)   mitmweb为例，运行mitmweb,可以看到界面   安装mitmp">
+    <meta name="description" content="安装步骤(非客户端) 前提python环境最好3.6及以上  python安装好后，pip命令执行 1pip3 install mitmproxy  mitm安装好后，有三种启动模式  mitmdump(什么都不显示，后台运行)结合自定义脚本使用 mitmproxy(命令行交互界面) mitmweb(webGUI界面友好)   mitmweb为例，运行mitmweb,可以看到界面   安装mitm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mitmproxy认识（1）">
 <meta property="og:url" content="http://example.com/2025/02/17/mitmproxy/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="安装步骤(非客户端) 前提python环境最好3.6及以上  python安装好后，pip命令执行 pip3 install mitmproxy  mitm安装好后，有三种启动模式  mitmdump(什么都不显示，后台运行)结合自定义脚本使用 mitmproxy(命令行交互界面) mitmweb(webGUI界面友好)   mitmweb为例，运行mitmweb,可以看到界面   安装mitmp">
+<meta property="og:description" content="安装步骤(非客户端) 前提python环境最好3.6及以上  python安装好后，pip命令执行 1pip3 install mitmproxy  mitm安装好后，有三种启动模式  mitmdump(什么都不显示，后台运行)结合自定义脚本使用 mitmproxy(命令行交互界面) mitmweb(webGUI界面友好)   mitmweb为例，运行mitmweb,可以看到界面   安装mitm">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://nosblog-1308048668.cos.ap-shanghai.myqcloud.com/image-20250217181110137.png">
 <meta property="og:image" content="https://nosblog-1308048668.cos.ap-shanghai.myqcloud.com/image-20250217181122592.png">
@@ -53,8 +53,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -338,7 +336,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -349,7 +347,7 @@
         
         
         
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -397,7 +395,7 @@
 <li><p>前提python环境最好3.6及以上</p>
 </li>
 <li><p>python安装好后，pip命令执行</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip3 <span class="token function">install</span> mitmproxy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip3 install mitmproxy<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>mitm安装好后，有三种启动模式</p>
 <ol>
@@ -431,42 +429,16 @@
 <h1 id="脚本自定义结果"><a href="#脚本自定义结果" class="headerlink" title="脚本自定义结果"></a>脚本自定义结果</h1><ol>
 <li>新建一个test_mitm.py文件</li>
 </ol>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> mitmproxy<span class="token punctuation">.</span>http
-<span class="token keyword">from</span> mitmproxy <span class="token keyword">import</span> ctx<span class="token punctuation">,</span> http
-
-<span class="token keyword">class</span> <span class="token class-name">TestMitm</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">request</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> flow<span class="token punctuation">:</span> mitmproxy<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HTTPFlow<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment"># 修改请求部分 相当于fiddler前置断点</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">111</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-
-    <span class="token keyword">def</span> <span class="token function">response</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> flow<span class="token punctuation">:</span> mitmproxy<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HTTPFlow<span class="token punctuation">)</span><span class="token punctuation">:</span>
-		<span class="token comment"># 修改返回部分 相当于fiddler后置断点</span>
-        <span class="token keyword">if</span> flow<span class="token punctuation">.</span>request<span class="token punctuation">.</span>host <span class="token keyword">in</span> <span class="token string">"&lt;http://lchyang.cn:9888>"</span><span class="token punctuation">:</span>
-            ctx<span class="token punctuation">.</span>log<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">"+-========================="</span><span class="token operator">+</span>flow<span class="token punctuation">.</span>request<span class="token punctuation">.</span>host<span class="token punctuation">)</span>
-
-            text <span class="token operator">=</span> flow<span class="token punctuation">.</span>response<span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            text <span class="token operator">=</span> text<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"密码登录"</span><span class="token punctuation">,</span> <span class="token string">"lchyang密码登录"</span><span class="token punctuation">)</span>
-            flow<span class="token punctuation">.</span>response<span class="token punctuation">.</span>set_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">http_connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> flow<span class="token punctuation">:</span> mitmproxy<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HTTPFlow<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> flow<span class="token punctuation">.</span>request<span class="token punctuation">.</span>host <span class="token operator">==</span> <span class="token string">"&lt;http://lchyang.cn:9888>"</span><span class="token punctuation">:</span>
-            <span class="token comment"># flow.response = http.HTTPResponse.make(404)</span>
-            text <span class="token operator">=</span> flow<span class="token punctuation">.</span>response<span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"===========================：+</span><span class="token interpolation"><span class="token punctuation">&#123;</span>text<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> mitmproxy.http<br><span class="hljs-keyword">from</span> mitmproxy <span class="hljs-keyword">import</span> ctx, http<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestMitm</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">self, flow: mitmproxy.http.HTTPFlow</span>):<br>    <span class="hljs-comment"># 修改请求部分 相当于fiddler前置断点</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-number">111</span>)<br>    ...<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">response</span>(<span class="hljs-params">self, flow: mitmproxy.http.HTTPFlow</span>):<br>		<span class="hljs-comment"># 修改返回部分 相当于fiddler后置断点</span><br>        <span class="hljs-keyword">if</span> flow.request.host <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;&lt;http://lchyang.cn:9888&gt;&quot;</span>:<br>            ctx.log.info(<span class="hljs-string">&quot;+-=========================&quot;</span>+flow.request.host)<br><br>            text = flow.response.get_text()<br>            text = text.replace(<span class="hljs-string">&quot;密码登录&quot;</span>, <span class="hljs-string">&quot;lchyang密码登录&quot;</span>)<br>            flow.response.set_text(text)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">http_connect</span>(<span class="hljs-params">self, flow: mitmproxy.http.HTTPFlow</span>):<br>        <span class="hljs-keyword">if</span> flow.request.host == <span class="hljs-string">&quot;&lt;http://lchyang.cn:9888&gt;&quot;</span>:<br>            <span class="hljs-comment"># flow.response = http.HTTPResponse.make(404)</span><br>            text = flow.response.get_text()<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;===========================：+<span class="hljs-subst">&#123;text&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <ol>
 <li><p>新建另一个py文件为addons.py</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> test_mitm <span class="token keyword">import</span> TestMitm
-
-addons <span class="token operator">=</span> <span class="token punctuation">[</span>
-   TestMitm<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> test_mitm <span class="hljs-keyword">import</span> TestMitm<br><br>addons = [<br>   TestMitm()<br>]<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>根据文件启动mitm</p>
 </li>
 </ol>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">mitmweb <span class="token operator">-</span>s addons<span class="token punctuation">.</span>py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">mitmweb -s addons.py<br></code></pre></td></tr></table></figure>
 
 <ol>
 <li><p>webGUI内改动</p>
@@ -874,8 +846,6 @@ addons <span class="token operator">=</span> <span class="token punctuation">[</
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

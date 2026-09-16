@@ -53,8 +53,6 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
-
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -337,7 +335,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          857 字
+          868 字
         
       </span>
     
@@ -415,13 +413,7 @@
 <li>进入解压后的文件，可以看到我们redis的配置文件</li>
 <li>基本环境配置</li>
 </ol>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装gcc环境</span>
-yum <span class="token function">install</span> gcc-c++
-<span class="token comment"># 查看版本</span>
-gcc <span class="token parameter variable">-v</span>
-<span class="token comment"># 编译</span>
-<span class="token function">make</span>
-<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">安装gcc环境</span><br>yum install gcc-c++<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看版本</span><br>gcc -v<br><span class="hljs-meta prompt_"># </span><span class="language-bash">编译</span><br>make<br>make install<br></code></pre></td></tr></table></figure>
 
 <ol start="5">
 <li><p>redis的默认安装路径、&#x2F;usr&#x2F;local&#x2F;bin</p>
@@ -447,7 +439,7 @@ gcc <span class="token parameter variable">-v</span>
 <h1 id="测试性能"><a href="#测试性能" class="headerlink" title="测试性能"></a>测试性能</h1><ol>
 <li>测试100个并发连接，1w请求</li>
 </ol>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">redis-benchmark <span class="token parameter variable">-h</span> localhost <span class="token parameter variable">-p</span> <span class="token number">6379</span> <span class="token parameter variable">-c</span> <span class="token number">100</span> <span class="token parameter variable">-n</span> <span class="token number">100000</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">redis-benchmark -h localhost -p 6379 -c 100 -n 100000<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>查看结果</li>
@@ -462,17 +454,17 @@ gcc <span class="token parameter variable">-v</span>
 <ul>
 <li>查看所有的key</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">keys *<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">keys *<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>清空当前数据库</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">flushdb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">flushdb<br></code></pre></td></tr></table></figure>
 <p><img src="https://s1.ax1x.com/2022/11/18/zuVxb9.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>清空全部数据库</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">flushall<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">flushall<br></code></pre></td></tr></table></figure>
 <p><img src="https://s1.ax1x.com/2022/11/18/zuZPC6.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="Redis是单线程"><a href="#Redis是单线程" class="headerlink" title="Redis是单线程"></a>Redis是单线程</h3><ol>
 <li>redis基于内存操作，cpu不是redis性能瓶颈</li>
@@ -883,8 +875,6 @@ gcc <span class="token parameter variable">-v</span>
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

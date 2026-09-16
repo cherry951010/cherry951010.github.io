@@ -19,12 +19,12 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="装饰器机制分析 f1函数为例，对装饰器的运行机制进行分析：  def outer(func):     def inner():         print(&quot;认证成功！&quot;)         result &#x3D; func()         print(&quot;日志添加成功&quot;)         return result     return inner  @outer def f1():     pri">
+    <meta name="description" content="装饰器机制分析 f1函数为例，对装饰器的运行机制进行分析：  1234567891011def outer(func):    def inner():        print(&quot;认证成功！&quot;)        result &#x3D; func()        print(&quot;日志添加成功&quot;)        return result    return inne">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-装饰器（2）机制分析">
 <meta property="og:url" content="http://example.com/2023/02/03/Python-%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%882%EF%BC%89%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="装饰器机制分析 f1函数为例，对装饰器的运行机制进行分析：  def outer(func):     def inner():         print(&quot;认证成功！&quot;)         result &#x3D; func()         print(&quot;日志添加成功&quot;)         return result     return inner  @outer def f1():     pri">
+<meta property="og:description" content="装饰器机制分析 f1函数为例，对装饰器的运行机制进行分析：  1234567891011def outer(func):    def inner():        print(&quot;认证成功！&quot;)        result &#x3D; func()        print(&quot;日志添加成功&quot;)        return result    return inne">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2023/02/06/pSca8lq.png">
 <meta property="article:published_time" content="2023-02-03T02:25:02.000Z">
@@ -47,8 +47,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -332,7 +330,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          4.1k 字
         
       </span>
     
@@ -343,7 +341,7 @@
         
         
         
-          31 分钟
+          35 分钟
         
       </span>
     
@@ -390,17 +388,7 @@
                 <h1 id="装饰器机制分析"><a href="#装饰器机制分析" class="headerlink" title="装饰器机制分析"></a>装饰器机制分析</h1><ul>
 <li>f1函数为例，对装饰器的运行机制进行分析：</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">outer</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"认证成功！"</span><span class="token punctuation">)</span>
-        result <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"日志添加成功"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
-    <span class="token keyword">return</span> inner
-
-<span class="token decorator annotation punctuation">@outer</span>
-<span class="token keyword">def</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"业务部门1数据接口......"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner</span>():<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;认证成功！&quot;</span>)<br>        result = func()<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日志添加成功&quot;</span>)<br>        <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> inner<br><br><span class="hljs-meta">@outer</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f1</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;业务部门1数据接口......&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <ol>
 <li><p>程序开始运行，从上往下解释，读到def outer(func):的时候，发现这是个“一等公民”函数，于是把函数体加载到内存里，然后过。</p>
@@ -434,24 +422,7 @@
 <li><p>请注意，@outer这句代码在程序执行到这里的时候就会自动执行outer函数内部的代码，如果不封装一下，在业务部门还未进行调用的时候，就执行了，这和初衷不符。当然，如果你对这个有需求也不是不行。请看下面的例子，它只有一层函数。</p>
 </li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">outer</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"认证成功！"</span><span class="token punctuation">)</span>
-    result <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"日志添加成功"</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> result
-
-<span class="token decorator annotation punctuation">@outer</span>
-<span class="token keyword">def</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"业务部门1数据接口......"</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 业务部门并没有调用f1函数</span>
-<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
-
-执行结果：
-
-认证成功！
-业务部门<span class="token number">1</span>数据接口<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-日志添加成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;认证成功！&quot;</span>)<br>    result = func()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日志添加成功&quot;</span>)<br>    <span class="hljs-keyword">return</span> result<br><br><span class="hljs-meta">@outer</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f1</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;业务部门1数据接口......&quot;</span>)<br><br><span class="hljs-comment"># 业务部门并没有调用f1函数</span><br>------------------------------------------<br><br>执行结果：<br><br>认证成功！<br>业务部门<span class="hljs-number">1</span>数据接口......<br>日志添加成功<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>只是定义好了装饰器，业务部门还没有调用f1函数呢，程序就把工作全做了。这就是为什么要封装一层函数的原因。</p>
@@ -459,125 +430,23 @@
 <li><p>上面的例子中，f1函数没有参数，在实际情况中肯定会需要参数的，函数的参数怎么传递的呢？</p>
 </li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">outer</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">inner</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"认证成功！"</span><span class="token punctuation">)</span>
-        result <span class="token operator">=</span> func<span class="token punctuation">(</span>username<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"日志添加成功"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
-    <span class="token keyword">return</span> inner
-
-<span class="token decorator annotation punctuation">@outer</span>
-<span class="token keyword">def</span> <span class="token function">f1</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"%s 正在连接业务部门1数据接口......"</span><span class="token operator">%</span>name<span class="token punctuation">)</span>
-
-<span class="token comment"># 调用方法</span>
-f1<span class="token punctuation">(</span><span class="token string">"jack"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner</span>(<span class="hljs-params">username</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;认证成功！&quot;</span>)<br>        result = func(username)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日志添加成功&quot;</span>)<br>        <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> inner<br><br><span class="hljs-meta">@outer</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params">name</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%s 正在连接业务部门1数据接口......&quot;</span>%name)<br><br><span class="hljs-comment"># 调用方法</span><br>f1(<span class="hljs-string">&quot;jack&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>在inner函数的定义部分也加上一个参数，调用func函数的时候传递这个参数，很好理解吧？</li>
 <li>可问题又来了，那么另外一个部门调用的f2有2个参数呢？f3有3个参数呢？你怎么传递？很简单，我们有*args和**kwargs嘛！号称“万能参数”！简单修改一下上面的代码：</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">outer</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"认证成功！"</span><span class="token punctuation">)</span>
-        result <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"日志添加成功"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
-    <span class="token keyword">return</span> inner
-
-<span class="token decorator annotation punctuation">@outer</span>
-<span class="token keyword">def</span> <span class="token function">f1</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"%s 正在连接业务部门1数据接口......"</span><span class="token operator">%</span>name<span class="token punctuation">)</span>
-
-<span class="token comment"># 调用方法</span>
-f1<span class="token punctuation">(</span><span class="token string">"jack"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner</span>(<span class="hljs-params">*args,**kwargs</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;认证成功！&quot;</span>)<br>        result = func(*args,**kwargs)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日志添加成功&quot;</span>)<br>        <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> inner<br><br><span class="hljs-meta">@outer</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params">name,age</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%s 正在连接业务部门1数据接口......&quot;</span>%name)<br><br><span class="hljs-comment"># 调用方法</span><br>f1(<span class="hljs-string">&quot;jack&quot;</span>,<span class="hljs-number">18</span>)<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>介绍到这里，装饰器的基本概念和初级使用方法，应该有了一定的了解了。那么进一步思考一下，一个函数可以被多个函数装饰吗？可以的！看下面的例子！</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">outer1</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"认证成功！"</span><span class="token punctuation">)</span>
-        result <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"日志添加成功"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
-    <span class="token keyword">return</span> inner
-
-
-<span class="token keyword">def</span> <span class="token function">outer2</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"一条欢迎信息。。。"</span><span class="token punctuation">)</span>
-        result <span class="token operator">=</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"一条欢送信息。。。"</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
-    <span class="token keyword">return</span> inner
-
-
-<span class="token decorator annotation punctuation">@outer1</span>
-<span class="token decorator annotation punctuation">@outer2</span>
-<span class="token keyword">def</span> <span class="token function">f1</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"%s 正在连接业务部门1数据接口......"</span><span class="token operator">%</span>name<span class="token punctuation">)</span>
-
-<span class="token comment"># 调用方法</span>
-f1<span class="token punctuation">(</span><span class="token string">"jack"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">)</span>
-
-<span class="token comment">#--------------------------------------------------</span>
-执行结果：
-
-认证成功！
-一条欢迎信息。。。
-jack 正在连接业务部门<span class="token number">1</span>数据接口<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-一条欢送信息。。。
-日志添加成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer1</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner</span>(<span class="hljs-params">*args,**kwargs</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;认证成功！&quot;</span>)<br>        result = func(*args,**kwargs)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日志添加成功&quot;</span>)<br>        <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> inner<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer2</span>(<span class="hljs-params">func</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner</span>(<span class="hljs-params">*args,**kwargs</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;一条欢迎信息。。。&quot;</span>)<br>        result = func(*args,**kwargs)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;一条欢送信息。。。&quot;</span>)<br>        <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> inner<br><br><br><span class="hljs-meta">@outer1</span><br><span class="hljs-meta">@outer2</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params">name,age</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%s 正在连接业务部门1数据接口......&quot;</span>%name)<br><br><span class="hljs-comment"># 调用方法</span><br>f1(<span class="hljs-string">&quot;jack&quot;</span>,<span class="hljs-number">18</span>)<br><br><span class="hljs-comment">#--------------------------------------------------</span><br>执行结果：<br><br>认证成功！<br>一条欢迎信息。。。<br>jack 正在连接业务部门<span class="hljs-number">1</span>数据接口......<br>一条欢送信息。。。<br>日志添加成功<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>更更进一步，装饰器自己可以有参数吗？可以的！看下面的例子：</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 认证函数</span>
-<span class="token keyword">def</span>  <span class="token function">auth</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span>kargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"认证成功！"</span><span class="token punctuation">)</span>
-<span class="token comment"># 日志函数</span>
-<span class="token keyword">def</span> <span class="token function">log</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span>kargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"日志添加成功"</span><span class="token punctuation">)</span>
-<span class="token comment"># 装饰器函数。接收两个参数，这两个参数应该是某个函数的名字。</span>
-<span class="token keyword">def</span> <span class="token function">Filter</span><span class="token punctuation">(</span>auth_func<span class="token punctuation">,</span>log_func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment"># 第一层封装，f1函数实际上被传递给了main_fuc这个参数</span>
-    <span class="token keyword">def</span> <span class="token function">outer</span><span class="token punctuation">(</span>main_func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment"># 第二层封装，auth和log函数的参数值被传递到了这里</span>
-        <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span>kargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token comment"># 下面代码的判断逻辑不重要，重要的是参数的引用和返回值</span>
-            before_result <span class="token operator">=</span> auth<span class="token punctuation">(</span>request<span class="token punctuation">,</span>kargs<span class="token punctuation">)</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>before_result <span class="token operator">!=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> before_result<span class="token punctuation">;</span>
-
-            main_result <span class="token operator">=</span> main_func<span class="token punctuation">(</span>request<span class="token punctuation">,</span>kargs<span class="token punctuation">)</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>main_result <span class="token operator">!=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> main_result<span class="token punctuation">;</span>
-
-            after_result <span class="token operator">=</span> log<span class="token punctuation">(</span>request<span class="token punctuation">,</span>kargs<span class="token punctuation">)</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>after_result <span class="token operator">!=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> after_result<span class="token punctuation">;</span>
-
-        <span class="token keyword">return</span> wrapper
-    <span class="token keyword">return</span> outer
-<span class="token comment"># 注意了，这里的装饰器函数有参数哦，它的意思是先执行filter函数</span>
-<span class="token comment"># 然后将filter函数的返回值作为装饰器函数的名字返回到这里，所以，</span>
-<span class="token comment"># 其实这里，Filter(auth,log) = outer , @Filter(auth,log) =  @outer</span>
-<span class="token decorator annotation punctuation">@Filter</span><span class="token punctuation">(</span>auth<span class="token punctuation">,</span>log<span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">f1</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"%s 正在连接业务部门1数据接口......"</span><span class="token operator">%</span>name<span class="token punctuation">)</span>
-
-<span class="token comment"># 调用方法</span>
-f1<span class="token punctuation">(</span><span class="token string">"jack"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">)</span>
-
-<span class="token comment">#-----------------------------------------------</span>
-运行结果：
-
-认证成功！
-jack 正在连接业务部门<span class="token number">1</span>数据接口<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-日志添加成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 认证函数</span><br><span class="hljs-keyword">def</span>  <span class="hljs-title function_">auth</span>(<span class="hljs-params">request,kargs</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;认证成功！&quot;</span>)<br><span class="hljs-comment"># 日志函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">log</span>(<span class="hljs-params">request,kargs</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;日志添加成功&quot;</span>)<br><span class="hljs-comment"># 装饰器函数。接收两个参数，这两个参数应该是某个函数的名字。</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Filter</span>(<span class="hljs-params">auth_func,log_func</span>):<br>    <span class="hljs-comment"># 第一层封装，f1函数实际上被传递给了main_fuc这个参数</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params">main_func</span>):<br>        <span class="hljs-comment"># 第二层封装，auth和log函数的参数值被传递到了这里</span><br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">wrapper</span>(<span class="hljs-params">request,kargs</span>):<br>            <span class="hljs-comment"># 下面代码的判断逻辑不重要，重要的是参数的引用和返回值</span><br>            before_result = auth(request,kargs)<br>            <span class="hljs-keyword">if</span>(before_result != <span class="hljs-literal">None</span>):<br>                <span class="hljs-keyword">return</span> before_result;<br><br>            main_result = main_func(request,kargs)<br>            <span class="hljs-keyword">if</span>(main_result != <span class="hljs-literal">None</span>):<br>                <span class="hljs-keyword">return</span> main_result;<br><br>            after_result = log(request,kargs)<br>            <span class="hljs-keyword">if</span>(after_result != <span class="hljs-literal">None</span>):<br>                <span class="hljs-keyword">return</span> after_result;<br><br>        <span class="hljs-keyword">return</span> wrapper<br>    <span class="hljs-keyword">return</span> outer<br><span class="hljs-comment"># 注意了，这里的装饰器函数有参数哦，它的意思是先执行filter函数</span><br><span class="hljs-comment"># 然后将filter函数的返回值作为装饰器函数的名字返回到这里，所以，</span><br><span class="hljs-comment"># 其实这里，Filter(auth,log) = outer , @Filter(auth,log) =  @outer</span><br><span class="hljs-meta">@Filter(<span class="hljs-params">auth,log</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params">name,age</span>):<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%s 正在连接业务部门1数据接口......&quot;</span>%name)<br><br><span class="hljs-comment"># 调用方法</span><br>f1(<span class="hljs-string">&quot;jack&quot;</span>,<span class="hljs-number">18</span>)<br><br><span class="hljs-comment">#-----------------------------------------------</span><br>运行结果：<br><br>认证成功！<br>jack 正在连接业务部门<span class="hljs-number">1</span>数据接口......<br>日志添加成功<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -667,9 +536,9 @@ jack 正在连接业务部门<span class="token number">1</span>数据接口<spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/14/%E9%AB%98%E9%A1%B9%E8%AE%BA%E6%96%87%E6%9E%B6%E6%9E%84/" title="高项论文架构">
+                      <a href="/2023/02/03/Python-%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%881%EF%BC%89/" title="Python-迭代器、生成器、装饰器（1）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">高项论文架构</span>
+                        <span class="hidden-mobile">Python-迭代器、生成器、装饰器（1）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -677,8 +546,8 @@ jack 正在连接业务部门<span class="token number">1</span>数据接口<spa
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/03/Python-%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%881%EF%BC%89/" title="Python-迭代器、生成器、装饰器（1）">
-                        <span class="hidden-mobile">Python-迭代器、生成器、装饰器（1）</span>
+                      <a href="/2022/12/15/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%885%EF%BC%89-%E5%B8%B8%E8%A7%81%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="测试基础理论（5）-常见用例设计方法">
+                        <span class="hidden-mobile">测试基础理论（5）-常见用例设计方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -975,8 +844,6 @@ jack 正在连接业务部门<span class="token number">1</span>数据接口<spa
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

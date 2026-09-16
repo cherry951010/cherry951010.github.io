@@ -19,12 +19,12 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="白盒测试 白盒测试是一种测试手段，多用于单元测试阶段，测试对象是函数代码等。追求的目标叫做：逻辑覆盖率。其测试方法为： 语句覆盖 判定覆盖 条件覆盖 判定&#x2F;条件覆盖 条件组合 路径覆盖  语句覆盖 让每句代码都至少执行一次的方法 比如下面代码  if(a &gt; 2)&#123; System.out.print(&quot;&gt;&quot;); &#125;else&#123; System.out.print">
+    <meta name="description" content="白盒测试 白盒测试是一种测试手段，多用于单元测试阶段，测试对象是函数代码等。追求的目标叫做：逻辑覆盖率。其测试方法为： 语句覆盖 判定覆盖 条件覆盖 判定&#x2F;条件覆盖 条件组合 路径覆盖  语句覆盖 让每句代码都至少执行一次的方法 比如下面代码  12345if(a &gt; 2)&#123;System.out.print(&quot;&gt;&quot;);&#125;else&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="测试基础理论（3）-白盒理论">
 <meta property="og:url" content="http://example.com/2022/12/08/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%883%EF%BC%89-%E7%99%BD%E7%9B%92%E7%90%86%E8%AE%BA/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="白盒测试 白盒测试是一种测试手段，多用于单元测试阶段，测试对象是函数代码等。追求的目标叫做：逻辑覆盖率。其测试方法为： 语句覆盖 判定覆盖 条件覆盖 判定&#x2F;条件覆盖 条件组合 路径覆盖  语句覆盖 让每句代码都至少执行一次的方法 比如下面代码  if(a &gt; 2)&#123; System.out.print(&quot;&gt;&quot;); &#125;else&#123; System.out.print">
+<meta property="og:description" content="白盒测试 白盒测试是一种测试手段，多用于单元测试阶段，测试对象是函数代码等。追求的目标叫做：逻辑覆盖率。其测试方法为： 语句覆盖 判定覆盖 条件覆盖 判定&#x2F;条件覆盖 条件组合 路径覆盖  语句覆盖 让每句代码都至少执行一次的方法 比如下面代码  12345if(a &gt; 2)&#123;System.out.print(&quot;&gt;&quot;);&#125;else&amp;#12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-08T07:25:02.000Z">
 <meta property="article:modified_time" content="2023-02-10T06:23:07.134Z">
@@ -45,8 +45,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -330,7 +328,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.6k 字
         
       </span>
     
@@ -341,7 +339,7 @@
         
         
         
-          20 分钟
+          22 分钟
         
       </span>
     
@@ -398,11 +396,7 @@
 <li>让每句代码都至少执行一次的方法</li>
 <li>比如下面代码</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">2</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&gt;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;&lt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>若是要保证每条语句都至少执行一次的话，你就需要俩条用例即可：a &#x3D; 1 和 a &#x3D; 3</li>
@@ -411,11 +405,7 @@
 <li>分支覆盖，目的是让每个判定的 真假 都至少出现一次</li>
 <li>比如下面代码</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">2</span> or b <span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">2</span> or b &gt; <span class="hljs-number">3</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&gt;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;&lt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>若要保证每个判定真假都至少出现一次，则最少需要俩条用例：a &#x3D; 3 和 a &#x3D;1,b&#x3D;1，这样 就保证了 判定(a&gt;2orb&gt;3) 真假至少出现了一次</li>
@@ -424,11 +414,7 @@
 <li>保证代码中每个条件的真假都至少出现一次</li>
 <li>比如下面代码</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">2</span> or b <span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">2</span> or b &gt; <span class="hljs-number">3</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&gt;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;&lt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>若要保证条件(a&gt;1)和(b&gt;2)和(else)都至少出现一次真假，那么用例如下：</li>
@@ -439,11 +425,7 @@
 <li>把判定和条件组合起来。用尽量少的用例同时满足俩种覆盖率的技术</li>
 <li>比如下面代码</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">1</span> and b <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">1</span> and b &gt; <span class="hljs-number">1</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&gt;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;&lt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>用例如下：</p>
@@ -455,11 +437,7 @@
 <li><p>两条用例就完美实现了 所有条件和所有判定的真假都至少出现了一次的情况，当然面对更为复杂的判断，这个则更难，比如：</p>
 </li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">1</span> and b <span class="token operator">></span> <span class="token number">1</span> and c <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">1</span> and b &gt; <span class="hljs-number">1</span> and c &gt; <span class="hljs-number">1</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&gt;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;&lt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>用例如下：</li>
@@ -470,11 +448,7 @@
 <li>这个方法是针对判定作为结果的，只是手段是条件而已，目的为：保证 判定的所有情况都至少出现一次 ，而不单单是真假。</li>
 <li>比如下面代码</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">1</span> or b <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">1</span> or b &gt; <span class="hljs-number">1</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&gt;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;&lt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>我们这里要保证判定(a&gt;1 or b&gt;1)的所有情况都出现一次，用例如下：</li>
@@ -488,16 +462,7 @@
 <li>保证代码中每条路径都至少执行一次！注意，这里并非语句，而是路径。</li>
 <li>比如下面代码</li>
 </ul>
-<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"%"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"&amp;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">1</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;*&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;%&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">1</span>)&#123;<br>System.out.print(<span class="hljs-string">&quot;&amp;&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>System.out.print(<span class="hljs-string">&quot;#&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>这个例子中，如果我们是语句覆盖，那么俩条用例足以，保证每条语句都至少执行一次，最终的输出可以为：*&amp; 和 %#</p>
@@ -921,8 +886,6 @@
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
