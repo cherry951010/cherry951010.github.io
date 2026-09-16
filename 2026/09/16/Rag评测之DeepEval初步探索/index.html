@@ -19,24 +19,27 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="输入、处理、输出 经典登录  输入可见 用户名 密码 验证码 勾选协议 登录按钮  不可见 登录时候的时间日期 地址ip 安全环境监测 mac地址 本地配置文件 缓存数据  处理可见 服务端 函数代码 密码加解密过程  不可见 外链引用 其他函数调用 第三方组件代码 第三方服务  输出可见 登录成功动作 个人信息页 个人昵称 登录失败 提示信息 密码清空 验证码重置 重定向  不可见 接口返回的参">
+    <meta name="description" content="Rag评测指标一般情况下分为：  为什么选用DeepEval开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。 特点：  开源免费 安装简单 内置丰富评估指标 支持自定义评估  安装DeepEval 我们这里使用的是uv来管理python环境 12# 安装uvpip install uv  新建文件夹DeepEvalLearn文件夹 12#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试基础理论（1）-ISO9126体系">
-<meta property="og:url" content="http://example.com/2022/12/06/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%881%EF%BC%89-ISO9126%E4%BD%93%E7%B3%BB/index.html">
+<meta property="og:title" content="Rag评测之DeepEval初步探索">
+<meta property="og:url" content="http://example.com/2026/09/16/Rag%E8%AF%84%E6%B5%8B%E4%B9%8BDeepEval%E5%88%9D%E6%AD%A5%E6%8E%A2%E7%B4%A2/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="输入、处理、输出 经典登录  输入可见 用户名 密码 验证码 勾选协议 登录按钮  不可见 登录时候的时间日期 地址ip 安全环境监测 mac地址 本地配置文件 缓存数据  处理可见 服务端 函数代码 密码加解密过程  不可见 外链引用 其他函数调用 第三方组件代码 第三方服务  输出可见 登录成功动作 个人信息页 个人昵称 登录失败 提示信息 密码清空 验证码重置 重定向  不可见 接口返回的参">
+<meta property="og:description" content="Rag评测指标一般情况下分为：  为什么选用DeepEval开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。 特点：  开源免费 安装简单 内置丰富评估指标 支持自定义评估  安装DeepEval 我们这里使用的是uv来管理python环境 12# 安装uvpip install uv  新建文件夹DeepEvalLearn文件夹 12#">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-06T07:25:02.000Z">
-<meta property="article:modified_time" content="2023-02-10T06:21:18.445Z">
+<meta property="og:image" content="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916163617253.png">
+<meta property="og:image" content="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916164804123.png">
+<meta property="article:published_time" content="2026-09-16T08:00:02.000Z">
+<meta property="article:modified_time" content="2026-09-16T08:48:17.763Z">
 <meta property="article:author" content="冰红茶">
-<meta property="article:tag" content="ISO9126">
+<meta property="article:tag" content="DeepEval">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916163617253.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>测试基础理论（1）-ISO9126体系 - WanOn丸子不会飞</title>
+  <title>Rag评测之DeepEval初步探索 - WanOn丸子不会飞</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -305,7 +308,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="测试基础理论（1）-ISO9126体系"></span>
+            <span id="subtitle" data-typed-text="Rag评测之DeepEval初步探索"></span>
           
         </div>
 
@@ -316,8 +319,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-06 15:25" pubdate>
-          2022年12月6日 下午
+        <time datetime="2026-09-16 16:00" pubdate>
+          2026年9月16日 下午
         </time>
       </span>
     
@@ -328,7 +331,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.7k 字
         
       </span>
     
@@ -339,7 +342,7 @@
         
         
         
-          20 分钟
+          23 分钟
         
       </span>
     
@@ -378,187 +381,54 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">测试基础理论（1）-ISO9126体系</h1>
+            <h1 id="seo-header">Rag评测之DeepEval初步探索</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="输入、处理、输出"><a href="#输入、处理、输出" class="headerlink" title="输入、处理、输出"></a>输入、处理、输出</h1><ul>
-<li>经典登录</li>
+                <h1 id="Rag评测指标"><a href="#Rag评测指标" class="headerlink" title="Rag评测指标"></a>Rag评测指标</h1><p>一般情况下分为：</p>
+<p><img src="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916163617253.png" srcset="/img/loading.gif" lazyload alt="指标"></p>
+<h1 id="为什么选用DeepEval"><a href="#为什么选用DeepEval" class="headerlink" title="为什么选用DeepEval"></a>为什么选用DeepEval</h1><p>开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>开源免费</li>
+<li>安装简单</li>
+<li>内置丰富评估指标</li>
+<li>支持自定义评估</li>
 </ul>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><h3 id="可见"><a href="#可见" class="headerlink" title="可见"></a>可见</h3><ul>
-<li>用户名</li>
-<li>密码</li>
-<li>验证码</li>
-<li>勾选协议</li>
-<li>登录按钮</li>
-</ul>
-<h3 id="不可见"><a href="#不可见" class="headerlink" title="不可见"></a>不可见</h3><ul>
-<li>登录时候的时间日期</li>
-<li>地址ip</li>
-<li>安全环境监测</li>
-<li>mac地址</li>
-<li>本地配置文件</li>
-<li>缓存数据</li>
-</ul>
-<h2 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h2><h3 id="可见-1"><a href="#可见-1" class="headerlink" title="可见"></a>可见</h3><ul>
-<li>服务端</li>
-<li>函数代码</li>
-<li>密码加解密过程</li>
-</ul>
-<h3 id="不可见-1"><a href="#不可见-1" class="headerlink" title="不可见"></a>不可见</h3><ul>
-<li>外链引用</li>
-<li>其他函数调用</li>
-<li>第三方组件代码</li>
-<li>第三方服务</li>
-</ul>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><h3 id="可见-2"><a href="#可见-2" class="headerlink" title="可见"></a>可见</h3><ul>
-<li>登录成功动作</li>
-<li>个人信息页</li>
-<li>个人昵称</li>
-<li>登录失败</li>
-<li>提示信息</li>
-<li>密码清空</li>
-<li>验证码重置</li>
-<li>重定向</li>
-</ul>
-<h3 id="不可见-2"><a href="#不可见-2" class="headerlink" title="不可见"></a>不可见</h3><ul>
-<li>接口返回的参数</li>
-<li>缓存、数据库的数据</li>
-<li>客户端本地配置</li>
-<li>缓存文件信息</li>
-</ul>
-<h1 id="非功能"><a href="#非功能" class="headerlink" title="非功能"></a>非功能</h1><h2 id="ISO9126体系"><a href="#ISO9126体系" class="headerlink" title="ISO9126体系"></a>ISO9126体系</h2><h3 id="功能性"><a href="#功能性" class="headerlink" title="功能性"></a>功能性</h3><ul>
-<li>定义：软件产品在指定条件下使用时，提供满足明确和隐含要求的功能的能力</li>
-</ul>
-<h4 id="适合性"><a href="#适合性" class="headerlink" title="适合性"></a>适合性</h4><ul>
-<li>标准定义</li>
-<li>软件产品为指定的任务和用户目标提供一组合适功能的能力</li>
-<li>软件提供了用户所需要的功能</li>
-<li>软件提供的功能是用户所需要的</li>
-<li>eg：一个记账的app给你推送某某省钱计划合理，但是频繁推送不相关的内容如《论演员的自我修养》就违反了这一特性</li>
-</ul>
-<h4 id="准确性"><a href="#准确性" class="headerlink" title="准确性"></a>准确性</h4><ul>
-<li>标准定义</li>
-<li>软件提供给用户功能的精确度是否符合目标。（例如：运算结果的准确，数字发生偏差，多个0或少个0）</li>
-<li>eg：不同场景对精确度要求不同，商城大电器一般是精确到元，而精品店里面的小物件会精确到分</li>
-</ul>
-<h4 id="互操作性"><a href="#互操作性" class="headerlink" title="互操作性"></a>互操作性</h4><ul>
-<li>标准定义</li>
-<li>软件与其它系统进行交互的能力</li>
-<li>eg：某一自研系统与三方系统对接，数据能否很好的传输</li>
-</ul>
-<h4 id="保密安全性"><a href="#保密安全性" class="headerlink" title="保密安全性"></a>保密安全性</h4><ul>
-<li>标准定义</li>
-<li>软件保护信息和数据的安全能力。</li>
-<li>eg：用户权限、密码、异地登录</li>
-</ul>
-<h4 id="功能性的依从性"><a href="#功能性的依从性" class="headerlink" title="功能性的依从性"></a>功能性的依从性</h4><ul>
-<li>标准定义</li>
-<li>软件产品符合和该功能相关的标准、规范、规则或特定的能力</li>
-<li>eg：一款计算器，计算规则要和数学中相关规则保持一致、用户名不能重复等</li>
-</ul>
-<h2 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h2><ul>
-<li>定义：在特定条件下使用时，软件产品维持规定的性能级别能力</li>
-</ul>
-<h3 id="成熟性"><a href="#成熟性" class="headerlink" title="成熟性"></a>成熟性</h3><ul>
-<li>标准定义：软件产品为避免因软件故障而导致失效的能力</li>
-<li>eg：修复登录bug，导致用户信息没了，引起的后果非常大，那么这个软件的成熟度是非常低的</li>
-</ul>
-<h3 id="容错性"><a href="#容错性" class="headerlink" title="容错性"></a>容错性</h3><ul>
-<li>标准定义：软件防止外部接口错误扩散而导致系统失效的能力</li>
-<li>eg：电脑卡顿导致正在编辑文档软件卡顿，最终丢失（负面）现在文档会有临时保存机制（高级容错）</li>
-</ul>
-<h3 id="易恢复性"><a href="#易恢复性" class="headerlink" title="易恢复性"></a>易恢复性</h3><ul>
-<li>标准定义：系统失效后，重新恢复原有的功能和性能的能力</li>
-<li>eg：依赖网络的游戏（网络中断，重新登录和网络中断，等待网络恢复重新连接，无须重新登录）</li>
-</ul>
-<h3 id="可靠性的依从性"><a href="#可靠性的依从性" class="headerlink" title="可靠性的依从性"></a>可靠性的依从性</h3><ul>
-<li>标准定义：软件产品遵循与可靠性相关的标准、约定或规定的能力</li>
-<li>eg：通信类产品，系统的故障率不能高干多少、故障恢复时间不能长于多少、服务器容灾策略、备份策略、回滚策略</li>
-</ul>
-<h2 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h2><ul>
-<li>定义：使用软件产品时，产品被用户理解、学习、使用和吸引用户的能力</li>
-</ul>
-<h3 id="易理解性"><a href="#易理解性" class="headerlink" title="易理解性"></a>易理解性</h3><ul>
-<li>标准定义：软件交互给用户的信息时，要清晰，准确，且要易懂，使用户能够快速理解软件。</li>
-<li>eg：用户打开一个软件，根据交互信息能够明白这个软件是做什么的（流程类）</li>
-</ul>
-<h3 id="易学性"><a href="#易学性" class="headerlink" title="易学性"></a>易学性</h3><ul>
-<li>标准定义：软件使用户能学习其应用的能力，如帮助手册是否支持中英文，是否齐全，是否有在线人工帮助等。</li>
-<li>eg：用户根据使用说明书能够快速学会软件的细节操作</li>
-</ul>
-<h3 id="易操作性"><a href="#易操作性" class="headerlink" title="易操作性"></a>易操作性</h3><ul>
-<li>标准定义：软件产品使用户能易于操作和控制它的能力</li>
-<li>eg：用户常用功能，或者操作app过程是否通俗易懂，不能说安装个app过程都很复杂，常用功能有的不知道藏在哪</li>
-</ul>
-<h3 id="吸引性"><a href="#吸引性" class="headerlink" title="吸引性"></a>吸引性</h3><ul>
-<li>标准定义：吸引用户的能力，界面，外观等</li>
-<li>eg：针对使用应用软件的人群，整体UI设计应该遵循什么样的风格，有没有什么整体性的数据展示</li>
-</ul>
-<h3 id="易用性的依从性"><a href="#易用性的依从性" class="headerlink" title="易用性的依从性"></a>易用性的依从性</h3><ul>
-<li>定义：遵循一定的标准。</li>
-<li>eg：用户虽然接触的软件没有太多，但是这些软件当中大部分通用的操作流程基本是一样的，所以在设计的时候，可以略微改动，但是不要过分优化以导致用户不适应所设计的操作流程</li>
-</ul>
-<h2 id="效率性"><a href="#效率性" class="headerlink" title="效率性"></a>效率性</h2><ul>
-<li>定义：相对于所用资源的数量，软件产品可提供适当的性能的能力，通俗就是软件的各方面性能</li>
-</ul>
-<h3 id="时间特性"><a href="#时间特性" class="headerlink" title="时间特性"></a>时间特性</h3><ul>
-<li>标准定义：软件处理特定的业务请求所需要的响应时间。</li>
-<li>eg：接口的响应时间、客户端渲染速度、缓存文件读写速度、数据库读写速度</li>
-</ul>
-<h3 id="资源利用性"><a href="#资源利用性" class="headerlink" title="资源利用性"></a>资源利用性</h3><ul>
-<li>标准定义：软件处理特定的业务请求所消耗的系统资源。</li>
-<li>eg：内存、磁盘、cpu、电、流量等的使用</li>
-</ul>
-<h3 id="效率依从性"><a href="#效率依从性" class="headerlink" title="效率依从性"></a>效率依从性</h3><ul>
-<li>参考市场同行竞品的效率，自己作为用户体验是不是能接受这样的效率</li>
-</ul>
-<h2 id="可维护性"><a href="#可维护性" class="headerlink" title="可维护性"></a>可维护性</h2><ul>
-<li>纠正、改进软件产品和软件产品对环境、功能规格变化的适应性</li>
-</ul>
-<h3 id="易分析行"><a href="#易分析行" class="headerlink" title="易分析行"></a>易分析行</h3><ul>
-<li>标准定义：软件提供辅助手段帮助开发人员定位缺陷产生的原因，判断出修改的地方</li>
-<li>eg：面对屎山代码，还有易分析性可言吗？</li>
-</ul>
-<h3 id="易改变性"><a href="#易改变性" class="headerlink" title="易改变性"></a>易改变性</h3><ul>
-<li>标准定义：软件产品使得指定的修改容易实现的能力。（降低修复问题的成本）</li>
-<li>eg：要改个功能，不能牵一发动全身，高内聚低耦合就是为了方便软件升级和修改</li>
-</ul>
-<h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><ul>
-<li>标准定义：软件避免因修改造成意外结果的能力</li>
-<li>eg：修改某一功能时，不会对另一无相关功能造成影响</li>
-</ul>
-<h3 id="易测试性"><a href="#易测试性" class="headerlink" title="易测试性"></a>易测试性</h3><ul>
-<li>标准定义：软件提供辅助性手段帮助测试人员实现其测试意图</li>
-<li>eg：开发过程中，尽可能多的输出一些关键及详细的日志，方便测试人员更为全面的测试</li>
-</ul>
-<h3 id="维护性的依从性"><a href="#维护性的依从性" class="headerlink" title="维护性的依从性"></a>维护性的依从性</h3><ul>
-<li>比如开发过程中代码注释、变量名规范、配置规范等</li>
-</ul>
-<h2 id="可移植性"><a href="#可移植性" class="headerlink" title="可移植性"></a>可移植性</h2><ul>
-<li>指软件产品从一种环境迁移到另外一种环境的能力</li>
-</ul>
-<h3 id="适应性"><a href="#适应性" class="headerlink" title="适应性"></a>适应性</h3><ul>
-<li>标准定义：软件产品无需作相应变动就能适应不同环境的能力。</li>
-<li>eg：一个软件在不同操作系统、浏览器的表现</li>
-</ul>
-<h3 id="易安装性"><a href="#易安装性" class="headerlink" title="易安装性"></a>易安装性</h3><ul>
-<li>标准定义：尽可能少的提供选择，方便用户直接安装</li>
-<li>eg：常用的一键傻瓜式安装可谓是已安装性满满</li>
-</ul>
-<h3 id="共存性"><a href="#共存性" class="headerlink" title="共存性"></a>共存性</h3><ul>
-<li>标准定义：软件产品在公共环境中与其它软件分享公共资源共存的软件</li>
-<li>eg：就比如你安装了两种杀毒软件，A说B有威胁建议卸载、同样Bye说A有威胁建议卸载，当然开玩笑，不与其他系统软件起冲突就是很好的共存</li>
-</ul>
-<h3 id="易替换性"><a href="#易替换性" class="headerlink" title="易替换性"></a>易替换性</h3><ul>
-<li>标准定义：软件产品在同样的环境下，替代另一个相同用途的软件产品的能力。</li>
-<li>eg：就好比office和wps都能操作办公文档，具体看用户选择，之前office居多，后面wps的用户数慢慢上升，这也反应在慢慢替换office（片面观点）</li>
-</ul>
-<h3 id="可移植性的依从性"><a href="#可移植性的依从性" class="headerlink" title="可移植性的依从性"></a>可移植性的依从性</h3><ul>
-<li>遵守规定，在不违法的情况下，变着法的抄也可以</li>
-</ul>
-<h1 id="CMM5质量图"><a href="#CMM5质量图" class="headerlink" title="CMM5质量图"></a>CMM5质量图</h1>
+<h1 id="安装DeepEval"><a href="#安装DeepEval" class="headerlink" title="安装DeepEval"></a>安装DeepEval</h1><ol>
+<li><p>我们这里使用的是uv来管理python环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装uv</span><br>pip install uv<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>新建文件夹DeepEvalLearn文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建文件夹</span><br><span class="hljs-built_in">mkdir</span> DeepEvalLearn<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>进入此文件夹内初始化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入目录</span><br><span class="hljs-built_in">cd</span> DeepEvalLearn<br><br><span class="hljs-comment"># 使用python3.12.13版本创建</span><br>uv init -p 3.12.13<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>同步虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv <span class="hljs-built_in">sync</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>激活虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv add deepeval pytest<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编写demo文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> deepeval <span class="hljs-keyword">import</span> evaluate<br><span class="hljs-keyword">from</span> deepeval.evaluate.configs <span class="hljs-keyword">import</span> DisplayConfig<br><span class="hljs-keyword">from</span> deepeval.metrics <span class="hljs-keyword">import</span> (<br>    AnswerRelevancyMetric,<br>    FaithfulnessMetric,<br>    HallucinationMetric,<br>)<br><span class="hljs-keyword">from</span> deepeval.models <span class="hljs-keyword">import</span> DeepSeekModel<br><span class="hljs-keyword">from</span> deepeval.test_case <span class="hljs-keyword">import</span> LLMTestCase<br><br><br>CUSTOMER_SERVICE_CASES = [<br>    &#123;<br>        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;我的订单什么时候能到？&quot;</span>,<br>        <span class="hljs-string">&quot;context&quot;</span>: [<br>            <span class="hljs-string">&quot;订单号：12345。&quot;</span>,<br>            <span class="hljs-string">&quot;订单 12345 已于 2026-09-15 发货，预计 2026-09-18 送达。&quot;</span>,<br>        ],<br>        <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;您的订单 12345 已经在 2026-09-15 发货，预计 2026-09-18 送达。&quot;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;这个商品支持退货吗？&quot;</span>,<br>        <span class="hljs-string">&quot;context&quot;</span>: [<br>            <span class="hljs-string">&quot;售后政策：商品签收后 7 天内支持无理由退货。&quot;</span>,<br>            <span class="hljs-string">&quot;退货商品需要保持包装完整，不影响二次销售。&quot;</span>,<br>        ],<br>        <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;支持退货。商品签收后 7 天内可申请无理由退货，但需要保持包装完整且不影响二次销售。&quot;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;现在有什么优惠活动吗？&quot;</span>,<br>        <span class="hljs-string">&quot;context&quot;</span>: [<br>            <span class="hljs-string">&quot;当前活动：订单满 100 元减 20 元。&quot;</span>,<br>            <span class="hljs-string">&quot;优惠活动有效期至 2026-09-30。&quot;</span>,<br>        ],<br>        <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;当前有满 100 元减 20 元的优惠活动，活动有效期到 2026-09-30。&quot;</span>,<br>    &#125;,<br>]<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">customer_service</span>(<span class="hljs-params">question: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">tuple</span>[<span class="hljs-built_in">str</span>, <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>]]:<br>    <span class="hljs-keyword">for</span> <span class="hljs-keyword">case</span> <span class="hljs-keyword">in</span> CUSTOMER_SERVICE_CASES:<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;input&quot;</span>] == question:<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;answer&quot;</span>], <span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;context&quot;</span>]<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;抱歉，我暂时没有查询到相关信息，会为您转人工客服处理。&quot;</span>, [<br>        <span class="hljs-string">&quot;未检索到相关客服知识。&quot;</span><br>    ]<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_test_cases</span>() -&gt; <span class="hljs-built_in">list</span>[LLMTestCase]:<br>    test_cases = []<br><br>    <span class="hljs-keyword">for</span> <span class="hljs-keyword">case</span> <span class="hljs-keyword">in</span> CUSTOMER_SERVICE_CASES:<br>        answer, context = customer_service(<span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;input&quot;</span>])<br>        test_cases.append(<br>            LLMTestCase(<br>                <span class="hljs-built_in">input</span>=<span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;input&quot;</span>],<br>                actual_output=answer,<br>                context=context,<br>                retrieval_context=context,<br>            )<br>        )<br><br>    <span class="hljs-keyword">return</span> test_cases<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_customer_service_with_deepseek</span>():<br>    judge_model = DeepSeekModel(model=<span class="hljs-string">&quot;deepseek-chat&quot;</span>)<br>    metrics = [<br>        AnswerRelevancyMetric(<br>            threshold=<span class="hljs-number">0.7</span>,<br>            model=judge_model,<br>            include_reason=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>        ),<br>        FaithfulnessMetric(<br>            threshold=<span class="hljs-number">0.7</span>,<br>            model=judge_model,<br>            include_reason=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>        ),<br>        HallucinationMetric(<br>            threshold=<span class="hljs-number">0.7</span>,<br>            model=judge_model,<br>            include_reason=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>        ),<br>    ]<br><br>    result = evaluate(<br>        test_cases=build_test_cases(),<br>        metrics=metrics,<br>        display_config=DisplayConfig(<br>            print_results=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>            inspect_after_run=<span class="hljs-literal">False</span>,<br>        ),<br>    )<br><br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">all</span>(test_result.success <span class="hljs-keyword">for</span> test_result <span class="hljs-keyword">in</span> result.test_results)<br><br></code></pre></td></tr></table></figure>
+
+<ol start="8">
+<li><p>终端运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv run pytest -s -vv testcases/file_name.py<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>可以看到结果</p>
+<p><img src="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916164804123.png" srcset="/img/loading.gif" lazyload alt="运行结果"></p>
+</li>
+</ol>
+</li>
+</ol>
+
                 
               </div>
             
@@ -576,7 +446,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/" class="category-chain-item">测试理论</a>
+  <a href="/categories/Rag%E8%AF%84%E6%B5%8B/" class="category-chain-item">Rag评测</a>
   
   
 
@@ -591,7 +461,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/ISO9126/" class="print-no-link">#ISO9126</a>
+        <a href="/tags/DeepEval/" class="print-no-link">#DeepEval</a>
       
     </div>
   
@@ -603,8 +473,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>测试基础理论（1）-ISO9126体系</div>
-      <div>http://example.com/2022/12/06/测试基础理论（1）-ISO9126体系/</div>
+      <div>Rag评测之DeepEval初步探索</div>
+      <div>http://example.com/2026/09/16/Rag评测之DeepEval初步探索/</div>
     </div>
     <div class="license-meta">
       
@@ -616,7 +486,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月6日</div>
+          <div>2026年9月16日</div>
         </div>
       
       
@@ -648,18 +518,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/06/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%BB%8F%E9%AA%8C%E5%92%8C%E6%95%99%E8%AE%AD/" title="软件测试经验和教训">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">软件测试经验和教训</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/27/Java%E5%9F%BA%E7%A1%80%EF%BC%884%EF%BC%89--%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%882%EF%BC%89/" title="Java基础（4）- 面向对象（2）">
-                        <span class="hidden-mobile">Java基础（4）- 面向对象（2）</span>
+                      <a href="/2025/02/17/mitmproxy/" title="mitmproxy认识（1）">
+                        <span class="hidden-mobile">mitmproxy认识（1）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
