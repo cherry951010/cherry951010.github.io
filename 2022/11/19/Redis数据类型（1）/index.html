@@ -19,12 +19,12 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="简介 可做数据库、缓存、消息中间件MQ  数据类型Redis-Key使用 判断key存在  1EXISTS keyName   移除key值  1move keyName DataBaseNum键值名|数据库索引   设置key值过期时间  1EXPIRE keyName seconds key名称|过期时间   查看key的数据类型  1type keyName   更多常用命令可参考redis">
+    <meta name="description" content="简介 可做数据库、缓存、消息中间件MQ  数据类型Redis-Key使用 判断key存在  EXISTS keyName   移除key值  move keyName DataBaseNum键值名|数据库索引   设置key值过期时间  EXPIRE keyName seconds key名称|过期时间   查看key的数据类型  type keyName   更多常用命令可参考redis官方文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis数据类型（1）">
 <meta property="og:url" content="http://example.com/2022/11/19/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%881%EF%BC%89/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="简介 可做数据库、缓存、消息中间件MQ  数据类型Redis-Key使用 判断key存在  1EXISTS keyName   移除key值  1move keyName DataBaseNum键值名|数据库索引   设置key值过期时间  1EXPIRE keyName seconds key名称|过期时间   查看key的数据类型  1type keyName   更多常用命令可参考redis">
+<meta property="og:description" content="简介 可做数据库、缓存、消息中间件MQ  数据类型Redis-Key使用 判断key存在  EXISTS keyName   移除key值  move keyName DataBaseNum键值名|数据库索引   设置key值过期时间  EXPIRE keyName seconds key名称|过期时间   查看key的数据类型  type keyName   更多常用命令可参考redis官方文档">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/19/zuDnCq.png">
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/19/zu7SgS.png">
@@ -72,6 +72,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -355,7 +357,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.4k 字
         
       </span>
     
@@ -366,7 +368,7 @@
         
         
         
-          13 分钟
+          12 分钟
         
       </span>
     
@@ -416,22 +418,22 @@
 <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="Redis-Key使用"><a href="#Redis-Key使用" class="headerlink" title="Redis-Key使用"></a>Redis-Key使用</h2><ul>
 <li>判断key存在</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">EXISTS keyName<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">EXISTS keyName<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>移除key值</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">move keyName DataBaseNum键值名|数据库索引<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">move keyName DataBaseNum键值名<span class="token operator">|</span>数据库索引<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuDnCq.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>设置key值过期时间</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">EXPIRE keyName seconds key名称|过期时间<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">EXPIRE keyName seconds key名称<span class="token operator">|</span>过期时间<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zu7SgS.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>查看key的数据类型</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">type keyName<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">type</span> keyName<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zu7PBj.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>更多常用命令可参考redis官方文档<br><a target="_blank" rel="noopener" href="http://www.redis.cn/commands.html" title="redis中文文档（常用命令）">redis中文文档（常用命令）</a></li>
@@ -439,65 +441,73 @@
 <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
 <li>追加键值：APPEND keyName str</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">APPEND keyName str<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">APPEND keyName str<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zu7JC6.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>变更加操作 incr keyName</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">INCR keyName<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">INCR keyName<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zu7fbj.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>减操作decr keyName</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">decr keyName<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">decr keyName<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zu7BVA.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>步长：增：incrby keyName step减：decrby keyName step</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">incrby keyName step # 增<br>decrby keyName step # 减<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">incrby keyName step <span class="token comment"># 增</span>
+decrby keyName step <span class="token comment"># 减</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zu7XqJ.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>获取指定索引字符串：GETRANGE keyName indexStart indexEnd 0,-1代表字符串全部</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">0,-1代表字符串全部</span><br>GETRANGE keyName indexStart indexEnd<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 0,-1代表字符串全部</span>
+GETRANGE keyName indexStart indexEnd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuHJds.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>替换值：setrange keyName index  str</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">setrange keyName index  str<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">setrange keyName index  str<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zubpwj.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>设置过期时间</li>
 <li>setex 设置值多久过期</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">setex key time<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">setex key <span class="token function">time</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zub0ht.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>setnx 如果key存在则创建失败</li>
 </ul>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">setnx key<br></code></pre></td></tr></table></figure>
+ <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">setnx key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zubD9P.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>批量设置</li>
 <li>mset:批量设置；mget：批量获取</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mset key1 val1 key2 val2<br>mget key1 key2<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mset key1 val1 key2 val2
+mget key1 key2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zub590.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>msetnx:要么一起成功，要么一起失败</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">msetnx key1 val1 key2 val2<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">msetnx key1 val1 key2 val2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zubTjU.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>对象</li>
 <li>设置和获取对象对象</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">设置</span><br>  MSET user:1:name lchyang user:1:age 18<br><span class="hljs-meta prompt_">  # </span><span class="language-bash">获取</span><br>  MGET user:1:name user:1:age<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置</span>
+  MSET user:1:name lchyang user:1:age <span class="token number">18</span>
+  <span class="token comment"># 获取</span>
+  MGET user:1:name user:1:age<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuqpjO.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>获取并设置</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">如果不存在，则返回nil</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">存在，获取原来的值并设置新的值</span><br>GETSET originKey updateValue<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 如果不存在，则返回nil</span>
+<span class="token comment"># 存在，获取原来的值并设置新的值</span>
+GETSET originKey updateValue<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuqaKU.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>使用场景</li>
@@ -513,52 +523,55 @@
 <ul>
 <li>添加 LPUSH list xx 插入列表  可重复值</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">LPUSH list xxx<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LPUSH list xxx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuLgFs.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>获取 LRANGE list 0 -1  区间获取</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">LRANGE list 0 -1<br><span class="hljs-meta prompt_"># </span><span class="language-bash">先进的在最后</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LRANGE list <span class="token number">0</span> <span class="token parameter variable">-1</span>
+<span class="token comment"># 先进的在最后</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuLqYR.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>插入 Rpush list value 插入的值在首位</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">RPUSH list value<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RPUSH list value<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuOE1P.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>移除值：LPOP 左开始 RPOP 右开始</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">LPOP list<br>RPOP list<br>LRANGE list 0 -1<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LPOP list
+RPOP list
+LRANGE list <span class="token number">0</span> <span class="token parameter variable">-1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuOlhn.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>查看长度  LLEN list</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">LLEN list<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LLEN list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/19/zuOsc6.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>移除指令 LREM list 2 three</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">LREN list 2 <br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LREN list <span class="token number">2</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/20/zMSNeP.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>截取指定长度的值 LTRIM mylist 1 2 下标</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">LTRIM mylist 1 2 下标<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LTRIM mylist <span class="token number">1</span> <span class="token number">2</span> 下标<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/20/zMS0Jg.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>移除旧值到新列表  RPOPLPUSH mylist myotherlist</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">RPOPLPUSH mylist myotherlist<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">RPOPLPUSH mylist myotherlist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/20/zMSsQs.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>更新值 lset list 0 “item”</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">lset list 0 &quot;item&quot;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">lset list <span class="token number">0</span> <span class="token string">"item"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/20/zMSRoT.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>指定位置插入值 LINSERT mylist before “world” “other”</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">LINSERT mylist before &quot;world&quot; &quot;other&quot;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">LINSERT mylist before <span class="token string">"world"</span> <span class="token string">"other"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/20/zMSfFU.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
 <li>他实际上是一个链表、before Node after，left、right都可以插入值</li>
@@ -966,6 +979,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

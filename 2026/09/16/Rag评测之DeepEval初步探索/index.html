@@ -19,12 +19,12 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Rag评测指标一般情况下分为：  为什么选用DeepEval开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。 特点：  开源免费 安装简单 内置丰富评估指标 支持自定义评估  安装DeepEval 我们这里使用的是uv来管理python环境 12# 安装uvpip install uv  新建文件夹DeepEvalLearn文件夹 12#">
+    <meta name="description" content="Rag评测指标一般情况下分为：  为什么选用DeepEval开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。 特点：  开源免费 安装简单 内置丰富评估指标 支持自定义评估  安装DeepEval 我们这里使用的是uv来管理python环境 # 安装uv pip install uv  新建文件夹DeepEvalLearn文件夹 # 创建文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rag评测之DeepEval初步探索">
 <meta property="og:url" content="http://example.com/2026/09/16/Rag%E8%AF%84%E6%B5%8B%E4%B9%8BDeepEval%E5%88%9D%E6%AD%A5%E6%8E%A2%E7%B4%A2/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="Rag评测指标一般情况下分为：  为什么选用DeepEval开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。 特点：  开源免费 安装简单 内置丰富评估指标 支持自定义评估  安装DeepEval 我们这里使用的是uv来管理python环境 12# 安装uvpip install uv  新建文件夹DeepEvalLearn文件夹 12#">
+<meta property="og:description" content="Rag评测指标一般情况下分为：  为什么选用DeepEval开源的 LLM 评估框架，用于测试和评估大语言模型应用的质量。它提供多种内置评估指标，支持自定义评估标准。 特点：  开源免费 安装简单 内置丰富评估指标 支持自定义评估  安装DeepEval 我们这里使用的是uv来管理python环境 # 安装uv pip install uv  新建文件夹DeepEvalLearn文件夹 # 创建文">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916163617253.png">
 <meta property="og:image" content="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916164804123.png">
@@ -48,6 +48,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -331,7 +333,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.1k 字
         
       </span>
     
@@ -342,7 +344,7 @@
         
         
         
-          23 分钟
+          18 分钟
         
       </span>
     
@@ -398,29 +400,135 @@
 </ul>
 <h1 id="安装DeepEval"><a href="#安装DeepEval" class="headerlink" title="安装DeepEval"></a>安装DeepEval</h1><ol>
 <li><p>我们这里使用的是uv来管理python环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装uv</span><br>pip install uv<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装uv</span>
+pip <span class="token function">install</span> uv<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 </li>
 <li><p>新建文件夹DeepEvalLearn文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建文件夹</span><br><span class="hljs-built_in">mkdir</span> DeepEvalLearn<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建文件夹</span>
+<span class="token function">mkdir</span> DeepEvalLearn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 </li>
 <li><p>进入此文件夹内初始化</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入目录</span><br><span class="hljs-built_in">cd</span> DeepEvalLearn<br><br><span class="hljs-comment"># 使用python3.12.13版本创建</span><br>uv init -p 3.12.13<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 进入目录</span>
+<span class="token builtin class-name">cd</span> DeepEvalLearn
+
+<span class="token comment"># 使用python3.12.13版本创建</span>
+uv init <span class="token parameter variable">-p</span> <span class="token number">3.12</span>.13<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 </li>
 <li><p>同步虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv <span class="hljs-built_in">sync</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">uv <span class="token function">sync</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 </li>
 <li><p>激活虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> .venv/bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 </li>
 <li><p>安装依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv add deepeval pytest<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">uv <span class="token function">add</span> deepeval pytest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 </li>
 <li><p>编写demo文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> deepeval <span class="hljs-keyword">import</span> evaluate<br><span class="hljs-keyword">from</span> deepeval.evaluate.configs <span class="hljs-keyword">import</span> DisplayConfig<br><span class="hljs-keyword">from</span> deepeval.metrics <span class="hljs-keyword">import</span> (<br>    AnswerRelevancyMetric,<br>    FaithfulnessMetric,<br>    HallucinationMetric,<br>)<br><span class="hljs-keyword">from</span> deepeval.models <span class="hljs-keyword">import</span> DeepSeekModel<br><span class="hljs-keyword">from</span> deepeval.test_case <span class="hljs-keyword">import</span> LLMTestCase<br><br><br>CUSTOMER_SERVICE_CASES = [<br>    &#123;<br>        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;我的订单什么时候能到？&quot;</span>,<br>        <span class="hljs-string">&quot;context&quot;</span>: [<br>            <span class="hljs-string">&quot;订单号：12345。&quot;</span>,<br>            <span class="hljs-string">&quot;订单 12345 已于 2026-09-15 发货，预计 2026-09-18 送达。&quot;</span>,<br>        ],<br>        <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;您的订单 12345 已经在 2026-09-15 发货，预计 2026-09-18 送达。&quot;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;这个商品支持退货吗？&quot;</span>,<br>        <span class="hljs-string">&quot;context&quot;</span>: [<br>            <span class="hljs-string">&quot;售后政策：商品签收后 7 天内支持无理由退货。&quot;</span>,<br>            <span class="hljs-string">&quot;退货商品需要保持包装完整，不影响二次销售。&quot;</span>,<br>        ],<br>        <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;支持退货。商品签收后 7 天内可申请无理由退货，但需要保持包装完整且不影响二次销售。&quot;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&quot;input&quot;</span>: <span class="hljs-string">&quot;现在有什么优惠活动吗？&quot;</span>,<br>        <span class="hljs-string">&quot;context&quot;</span>: [<br>            <span class="hljs-string">&quot;当前活动：订单满 100 元减 20 元。&quot;</span>,<br>            <span class="hljs-string">&quot;优惠活动有效期至 2026-09-30。&quot;</span>,<br>        ],<br>        <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;当前有满 100 元减 20 元的优惠活动，活动有效期到 2026-09-30。&quot;</span>,<br>    &#125;,<br>]<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">customer_service</span>(<span class="hljs-params">question: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">tuple</span>[<span class="hljs-built_in">str</span>, <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>]]:<br>    <span class="hljs-keyword">for</span> <span class="hljs-keyword">case</span> <span class="hljs-keyword">in</span> CUSTOMER_SERVICE_CASES:<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;input&quot;</span>] == question:<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;answer&quot;</span>], <span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;context&quot;</span>]<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;抱歉，我暂时没有查询到相关信息，会为您转人工客服处理。&quot;</span>, [<br>        <span class="hljs-string">&quot;未检索到相关客服知识。&quot;</span><br>    ]<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_test_cases</span>() -&gt; <span class="hljs-built_in">list</span>[LLMTestCase]:<br>    test_cases = []<br><br>    <span class="hljs-keyword">for</span> <span class="hljs-keyword">case</span> <span class="hljs-keyword">in</span> CUSTOMER_SERVICE_CASES:<br>        answer, context = customer_service(<span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;input&quot;</span>])<br>        test_cases.append(<br>            LLMTestCase(<br>                <span class="hljs-built_in">input</span>=<span class="hljs-keyword">case</span>[<span class="hljs-string">&quot;input&quot;</span>],<br>                actual_output=answer,<br>                context=context,<br>                retrieval_context=context,<br>            )<br>        )<br><br>    <span class="hljs-keyword">return</span> test_cases<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_customer_service_with_deepseek</span>():<br>    judge_model = DeepSeekModel(model=<span class="hljs-string">&quot;deepseek-chat&quot;</span>)<br>    metrics = [<br>        AnswerRelevancyMetric(<br>            threshold=<span class="hljs-number">0.7</span>,<br>            model=judge_model,<br>            include_reason=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>        ),<br>        FaithfulnessMetric(<br>            threshold=<span class="hljs-number">0.7</span>,<br>            model=judge_model,<br>            include_reason=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>        ),<br>        HallucinationMetric(<br>            threshold=<span class="hljs-number">0.7</span>,<br>            model=judge_model,<br>            include_reason=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>        ),<br>    ]<br><br>    result = evaluate(<br>        test_cases=build_test_cases(),<br>        metrics=metrics,<br>        display_config=DisplayConfig(<br>            print_results=<span class="hljs-literal">True</span>,<br>            verbose_mode=<span class="hljs-literal">True</span>,<br>            inspect_after_run=<span class="hljs-literal">False</span>,<br>        ),<br>    )<br><br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">all</span>(test_result.success <span class="hljs-keyword">for</span> test_result <span class="hljs-keyword">in</span> result.test_results)<br><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> deepeval <span class="token keyword">import</span> evaluate
+<span class="token keyword">from</span> deepeval<span class="token punctuation">.</span>evaluate<span class="token punctuation">.</span>configs <span class="token keyword">import</span> DisplayConfig
+<span class="token keyword">from</span> deepeval<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> <span class="token punctuation">(</span>
+    AnswerRelevancyMetric<span class="token punctuation">,</span>
+    FaithfulnessMetric<span class="token punctuation">,</span>
+    HallucinationMetric<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">from</span> deepeval<span class="token punctuation">.</span>models <span class="token keyword">import</span> DeepSeekModel
+<span class="token keyword">from</span> deepeval<span class="token punctuation">.</span>test_case <span class="token keyword">import</span> LLMTestCase
+
+
+CUSTOMER_SERVICE_CASES <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">"input"</span><span class="token punctuation">:</span> <span class="token string">"我的订单什么时候能到？"</span><span class="token punctuation">,</span>
+        <span class="token string">"context"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"订单号：12345。"</span><span class="token punctuation">,</span>
+            <span class="token string">"订单 12345 已于 2026-09-15 发货，预计 2026-09-18 送达。"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"answer"</span><span class="token punctuation">:</span> <span class="token string">"您的订单 12345 已经在 2026-09-15 发货，预计 2026-09-18 送达。"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">"input"</span><span class="token punctuation">:</span> <span class="token string">"这个商品支持退货吗？"</span><span class="token punctuation">,</span>
+        <span class="token string">"context"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"售后政策：商品签收后 7 天内支持无理由退货。"</span><span class="token punctuation">,</span>
+            <span class="token string">"退货商品需要保持包装完整，不影响二次销售。"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"answer"</span><span class="token punctuation">:</span> <span class="token string">"支持退货。商品签收后 7 天内可申请无理由退货，但需要保持包装完整且不影响二次销售。"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token string">"input"</span><span class="token punctuation">:</span> <span class="token string">"现在有什么优惠活动吗？"</span><span class="token punctuation">,</span>
+        <span class="token string">"context"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"当前活动：订单满 100 元减 20 元。"</span><span class="token punctuation">,</span>
+            <span class="token string">"优惠活动有效期至 2026-09-30。"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"answer"</span><span class="token punctuation">:</span> <span class="token string">"当前有满 100 元减 20 元的优惠活动，活动有效期到 2026-09-30。"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+
+<span class="token keyword">def</span> <span class="token function">customer_service</span><span class="token punctuation">(</span>question<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">,</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> <span class="token keyword">case</span> <span class="token keyword">in</span> CUSTOMER_SERVICE_CASES<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">case</span><span class="token punctuation">[</span><span class="token string">"input"</span><span class="token punctuation">]</span> <span class="token operator">==</span> question<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token keyword">case</span><span class="token punctuation">[</span><span class="token string">"answer"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">case</span><span class="token punctuation">[</span><span class="token string">"context"</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">return</span> <span class="token string">"抱歉，我暂时没有查询到相关信息，会为您转人工客服处理。"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token string">"未检索到相关客服知识。"</span>
+    <span class="token punctuation">]</span>
+
+
+<span class="token keyword">def</span> <span class="token function">build_test_cases</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">list</span><span class="token punctuation">[</span>LLMTestCase<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    test_cases <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">for</span> <span class="token keyword">case</span> <span class="token keyword">in</span> CUSTOMER_SERVICE_CASES<span class="token punctuation">:</span>
+        answer<span class="token punctuation">,</span> context <span class="token operator">=</span> customer_service<span class="token punctuation">(</span><span class="token keyword">case</span><span class="token punctuation">[</span><span class="token string">"input"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        test_cases<span class="token punctuation">.</span>append<span class="token punctuation">(</span>
+            LLMTestCase<span class="token punctuation">(</span>
+                <span class="token builtin">input</span><span class="token operator">=</span><span class="token keyword">case</span><span class="token punctuation">[</span><span class="token string">"input"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                actual_output<span class="token operator">=</span>answer<span class="token punctuation">,</span>
+                context<span class="token operator">=</span>context<span class="token punctuation">,</span>
+                retrieval_context<span class="token operator">=</span>context<span class="token punctuation">,</span>
+            <span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> test_cases
+
+
+<span class="token keyword">def</span> <span class="token function">test_customer_service_with_deepseek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    judge_model <span class="token operator">=</span> DeepSeekModel<span class="token punctuation">(</span>model<span class="token operator">=</span><span class="token string">"deepseek-chat"</span><span class="token punctuation">)</span>
+    metrics <span class="token operator">=</span> <span class="token punctuation">[</span>
+        AnswerRelevancyMetric<span class="token punctuation">(</span>
+            threshold<span class="token operator">=</span><span class="token number">0.7</span><span class="token punctuation">,</span>
+            model<span class="token operator">=</span>judge_model<span class="token punctuation">,</span>
+            include_reason<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+            verbose_mode<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        FaithfulnessMetric<span class="token punctuation">(</span>
+            threshold<span class="token operator">=</span><span class="token number">0.7</span><span class="token punctuation">,</span>
+            model<span class="token operator">=</span>judge_model<span class="token punctuation">,</span>
+            include_reason<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+            verbose_mode<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        HallucinationMetric<span class="token punctuation">(</span>
+            threshold<span class="token operator">=</span><span class="token number">0.7</span><span class="token punctuation">,</span>
+            model<span class="token operator">=</span>judge_model<span class="token punctuation">,</span>
+            include_reason<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+            verbose_mode<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+
+    result <span class="token operator">=</span> evaluate<span class="token punctuation">(</span>
+        test_cases<span class="token operator">=</span>build_test_cases<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        metrics<span class="token operator">=</span>metrics<span class="token punctuation">,</span>
+        display_config<span class="token operator">=</span>DisplayConfig<span class="token punctuation">(</span>
+            print_results<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+            verbose_mode<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+            inspect_after_run<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    <span class="token keyword">assert</span> <span class="token builtin">all</span><span class="token punctuation">(</span>test_result<span class="token punctuation">.</span>success <span class="token keyword">for</span> test_result <span class="token keyword">in</span> result<span class="token punctuation">.</span>test_results<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ol start="8">
 <li><p>终端运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv run pytest -s -vv testcases/file_name.py<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">uv run pytest <span class="token parameter variable">-s</span> <span class="token parameter variable">-vv</span> testcases/file_name.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 </li>
 <li><p>可以看到结果</p>
 <p><img src="https://lchyang-1257321501.cos.ap-shanghai.myqcloud.com/image-20260916164804123.png" srcset="/img/loading.gif" lazyload alt="运行结果"></p>
@@ -820,6 +928,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

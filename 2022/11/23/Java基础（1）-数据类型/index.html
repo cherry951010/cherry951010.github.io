@@ -19,12 +19,12 @@
   <meta name="author" content="冰红茶">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java语法规范 所有的Java语句必须以;结尾！ 无论是()、[]还是{}，所有的括号必须一一匹配！ 主方法的代码只能写在{}中！  Java基础语法（面向过程）变量和关键字变量 变量就是一个可变的量，例如定义一个int类型的变量（int就是整数类型）：  123int a &#x3D; 10;a &#x3D; 20;a &#x3D; 30;   我们能够随意更改它的值，也就是说它的值是随时可变的，我们称为变量。变量可以是类">
+    <meta name="description" content="Java语法规范 所有的Java语句必须以;结尾！ 无论是()、[]还是{}，所有的括号必须一一匹配！ 主方法的代码只能写在{}中！  Java基础语法（面向过程）变量和关键字变量 变量就是一个可变的量，例如定义一个int类型的变量（int就是整数类型）：  int a &#x3D; 10; a &#x3D; 20; a &#x3D; 30;   我们能够随意更改它的值，也就是说它的值是随时可变的，我们称为变量。变量可以是类的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础（1）-数据类型">
 <meta property="og:url" content="http://example.com/2022/11/23/Java%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="WanOn丸子不会飞">
-<meta property="og:description" content="Java语法规范 所有的Java语句必须以;结尾！ 无论是()、[]还是{}，所有的括号必须一一匹配！ 主方法的代码只能写在{}中！  Java基础语法（面向过程）变量和关键字变量 变量就是一个可变的量，例如定义一个int类型的变量（int就是整数类型）：  123int a &#x3D; 10;a &#x3D; 20;a &#x3D; 30;   我们能够随意更改它的值，也就是说它的值是随时可变的，我们称为变量。变量可以是类">
+<meta property="og:description" content="Java语法规范 所有的Java语句必须以;结尾！ 无论是()、[]还是{}，所有的括号必须一一匹配！ 主方法的代码只能写在{}中！  Java基础语法（面向过程）变量和关键字变量 变量就是一个可变的量，例如定义一个int类型的变量（int就是整数类型）：  int a &#x3D; 10; a &#x3D; 20; a &#x3D; 30;   我们能够随意更改它的值，也就是说它的值是随时可变的，我们称为变量。变量可以是类的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/30/zwm1ZF.png">
 <meta property="article:published_time" content="2022-11-23T07:25:02.000Z">
@@ -47,6 +47,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -330,7 +332,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          4.3k 字
         
       </span>
     
@@ -341,7 +343,7 @@
         
         
         
-          38 分钟
+          36 分钟
         
       </span>
     
@@ -393,7 +395,9 @@
 <h1 id="Java基础语法（面向过程）"><a href="#Java基础语法（面向过程）" class="headerlink" title="Java基础语法（面向过程）"></a>Java基础语法（面向过程）</h1><h2 id="变量和关键字"><a href="#变量和关键字" class="headerlink" title="变量和关键字"></a>变量和关键字</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
 <li>变量就是一个可变的量，例如定义一个int类型的变量（int就是整数类型）：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>a = <span class="hljs-number">20</span>;<br>a = <span class="hljs-number">30</span>;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li><p>我们能够随意更改它的值，也就是说它的值是随时可变的，我们称为变量。变量可以是类的变量，也可以是方法内部的局部变量（我们现阶段主要用局部变量，类变量在面向对象再讲解）</p>
@@ -405,7 +409,8 @@
 <li><p>定义一个变量的格式如下：</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">[类型] [标识符(名字)] = [初始值(可选)]<br><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>类型<span class="token punctuation">]</span> <span class="token punctuation">[</span>标识符<span class="token punctuation">(</span>名字<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>初始值<span class="token punctuation">(</span>可选<span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>注意：标识符不能为以下内容：</li>
@@ -423,7 +428,8 @@
 <h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ul>
 <li>常量就是无法修改值的变量，常量的值，只能定义一次：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>a = <span class="hljs-number">10</span>;  <span class="hljs-comment">//报错！</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">final</span> <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>  <span class="token comment">//报错！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>常量前面必须添加final关键字（C语言里面是const，虽然Java也有，但是不能使用！）</li>
@@ -432,7 +438,12 @@
 <h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
 <li>养成注释的好习惯，不然以后自己都看不懂自己的代码！注释包括单行注释和多行注释：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 我是单行注释</span><br><span class="hljs-comment">/** </span><br><span class="hljs-comment">*我是</span><br><span class="hljs-comment">*多行注释</span><br><span class="hljs-comment">*/</span><br><span class="hljs-comment">//TODO 待做标记</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 我是单行注释</span>
+<span class="token comment">/** 
+*我是
+*多行注释
+*/</span>
+<span class="token comment">//TODO 待做标记</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><ul>
 <li>Java中的数据类型分为基本数据类型和引用类型两大类</li>
@@ -481,14 +492,15 @@
 <li><p>字符串用双引号括起来！比如：String str &#x3D; “B站青空霞光女粉”;</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;B站青空霞光女粉&quot;</span>;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"B站青空霞光女粉"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <h2 id="小数类型"><a href="#小数类型" class="headerlink" title="小数类型"></a>小数类型</h2><ul>
 <li>小数类型比较难理解（比较难理解指的是原理，不是使用）首先来看看Java中的小数类型包含哪些：</li>
 <li>float 单精度浮点型 （32bit，4字节）</li>
 <li>double 双精度浮点型（64bit，8字节）</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">double</span> <span class="hljs-variable">d1</span> <span class="hljs-operator">=</span> <span class="hljs-number">1.234</span>;<br><span class="hljs-type">float</span> <span class="hljs-variable">f1</span> <span class="hljs-operator">=</span> <span class="hljs-number">1.2f</span>;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">double</span> d1 <span class="token operator">=</span> <span class="token number">1.234</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> f1 <span class="token operator">=</span> <span class="token number">1.2f</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><h3 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h3><ul>
 <li><p>隐式类型转换支持字节数小的类型自动转换为字节数大的类型，整数类型自动转换为小数类型，转换规则如下：</p>
@@ -500,12 +512,22 @@
 <li><p>所以，如下的代码就能够正常运行：</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">9</span>;<br><span class="hljs-type">short</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> b;<br><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> s;<br><span class="hljs-type">long</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> i;<br><span class="hljs-type">float</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> l;<br><span class="hljs-type">double</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> f;<br>System.out.println(d);<br><span class="hljs-comment">//输出 9.0</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">byte</span> b <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+<span class="token keyword">short</span> s <span class="token operator">=</span> b<span class="token punctuation">;</span>
+<span class="token keyword">int</span> i <span class="token operator">=</span> s<span class="token punctuation">;</span>
+<span class="token keyword">long</span> l <span class="token operator">=</span> i<span class="token punctuation">;</span>
+<span class="token keyword">float</span> f <span class="token operator">=</span> l<span class="token punctuation">;</span>
+<span class="token keyword">double</span> d <span class="token operator">=</span> f<span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//输出 9.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="显示类型转换"><a href="#显示类型转换" class="headerlink" title="显示类型转换"></a>显示类型转换</h3><ul>
 <li>显示类型转换也叫做强制类型转换，也就是说，违反隐式转换的规则，牺牲精度强行进行类型转换</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">128</span>;<br><span class="hljs-type">byte</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> (<span class="hljs-type">byte</span>)i;<br>System.out.println(b);<br><span class="hljs-comment">//输出 -128</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>
+<span class="token keyword">byte</span> b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span>i<span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//输出 -128</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li><p>为什么结果是-128？精度丢失了！</p>
@@ -518,7 +540,9 @@
 <h3 id="数据类型自动提升"><a href="#数据类型自动提升" class="headerlink" title="数据类型自动提升"></a>数据类型自动提升</h3><ul>
 <li>在参与运算时（也可以位于表达式中时，自增自减除外），所有的byte型、short型和char的值将被提升到int型：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">105</span>;<br>b = b + <span class="hljs-number">1</span>;   <span class="hljs-comment">//报错！</span><br>System.out.println(b);<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">byte</span> b <span class="token operator">=</span> <span class="token number">105</span><span class="token punctuation">;</span>
+b <span class="token operator">=</span> b <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>   <span class="token comment">//报错！</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>这个特性是由 <strong>Java虚拟机规范</strong> 定义的，也是为了提高运行的效率。其他的特性还有：</li>
@@ -529,72 +553,107 @@
 <h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="赋值和算数运算符"><a href="#赋值和算数运算符" class="headerlink" title="赋值和算数运算符"></a>赋值和算数运算符</h3><ul>
 <li>赋值运算符<code>=</code>是最常用的运算符，其实就是将我们等号右边的结果，传递给等号左边的变量，例如：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> + <span class="hljs-number">8</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span> * <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">8</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>算术运算符也就是我们在小学阶段学习的<code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code>，分别代表加减乘除还有取余，例如</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> a * b;<br><span class="hljs-comment">//结果为6</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> c <span class="token operator">=</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span>
+<span class="token comment">//结果为6</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>需要注意的是，<code>+</code>还可以用作字符串连接符使用：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(<span class="hljs-string">&quot;青空霞光&quot;</span> + <span class="hljs-string">&quot;nb&quot;</span>);  <span class="hljs-comment">//青空霞光nb</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"青空霞光"</span> <span class="token operator">+</span> <span class="token string">"nb"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//青空霞光nb</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>当然，字符串可以直接连接其他类型，但是会全部当做字符串处理：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">6</span>, b = <span class="hljs-number">66</span>;<br>System.out.println(<span class="hljs-string">&quot;青空霞光&quot;</span> + a + b); <span class="hljs-comment">// 青空霞光666</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">66</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"青空霞光"</span> <span class="token operator">+</span> a <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 青空霞光666</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>算术运算符还包括<code>++</code>和<code>--</code>也就是自增和自减，以自增为例：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>a++;<br>System.out.println(a); <span class="hljs-comment">//输出为11</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+a<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//输出为11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>自增自减运算符放在变量的前后的返回值是有区别的：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>System.out.println(++a);  <span class="hljs-comment">//11 （先自增，再返回值）</span><br>System.out.println(a);  <span class="hljs-comment">//11</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>System.out.println(a++);  <span class="hljs-comment">//10 （先返回值，再自增）</span><br>System.out.println(a);   <span class="hljs-comment">//11</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">++</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//11 （先自增，再返回值）</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//10 （先返回值，再自增）</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>为了使得代码更简洁，你还可以使用扩展的赋值运算符，包括<code>+=</code>、<code>-=</code>、<code>/=</code>、<code>*=</code>、<code>%=</code>，和自增自减类似，先执行运算，再返回结果，同时自身改变：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>System.out.println(a += <span class="hljs-number">2</span>);  <span class="hljs-comment">//等价于 a = a + 2</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//等价于 a = a + 2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="关系运算法"><a href="#关系运算法" class="headerlink" title="关系运算法"></a>关系运算法</h3><ul>
 <li>关系运算符的结果只能是布尔类型，也就是要么为真要么为假，关系运算符包括：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">&gt; &lt; == <span class="hljs-comment">//大于小于等于</span><br>&gt;= &lt;=  !=  <span class="hljs-comment">//大于等于，小于等于，不等于</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">></span> <span class="token operator">&lt;</span> <span class="token operator">==</span> <span class="token comment">//大于小于等于</span>
+<span class="token operator">>=</span> <span class="token operator">&lt;=</span>  <span class="token operator">!=</span>  <span class="token comment">//大于等于，小于等于，不等于</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>关系运算符一般只用于基本类型的比较，运算结果只能是boolean：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> a &gt; b;<br>System.out.println(x);<br><span class="hljs-comment">//结果为 true</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span> x <span class="token operator">=</span> a <span class="token operator">></span> b<span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//结果为 true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><ul>
 <li>逻辑运算符两边只能是boolean类型或是关系&#x2F;逻辑运算表达式，返回值只能是boolean类型！逻辑运算符包括：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">&amp;&amp; <span class="hljs-comment">//与运算，要求两边同时为true才能返回true</span><br>|| <span class="hljs-comment">//或运算，要求两边至少要有一个为true才能返回true</span><br>! <span class="hljs-comment">//非运算，一般放在表达式最前面，表达式用括号扩起来，表示对表达式的结果进行反转</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&amp;&amp;</span> <span class="token comment">//与运算，要求两边同时为true才能返回true</span>
+<span class="token operator">||</span> <span class="token comment">//或运算，要求两边至少要有一个为true才能返回true</span>
+<span class="token operator">!</span> <span class="token comment">//非运算，一般放在表达式最前面，表达式用括号扩起来，表示对表达式的结果进行反转</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>举例：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> a &gt; b &amp;&amp; a &lt; b;  <span class="hljs-comment">//怎么可能同时满足呢</span><br>System.out.println(x);   <span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> a &gt; b || a &lt;= b;  <span class="hljs-comment">//一定有一个满足！</span><br>System.out.println(x);   <span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> !(a &gt; b); <span class="hljs-comment">//对结果进行反转，本来应该是true</span><br>System.out.println(x); <span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
-<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">&amp; <span class="hljs-comment">//按位与，注意，返回的是运算后的同类型值，不是boolean！</span><br>| <span class="hljs-comment">//按位或</span><br>^ <span class="hljs-comment">//按位异或 0 ^ 0 = 0</span><br>~ <span class="hljs-comment">//按位非</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span> x <span class="token operator">=</span> a <span class="token operator">></span> b <span class="token operator">&amp;&amp;</span> a <span class="token operator">&lt;</span> b<span class="token punctuation">;</span>  <span class="token comment">//怎么可能同时满足呢</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span> x <span class="token operator">=</span> a <span class="token operator">></span> b <span class="token operator">||</span> a <span class="token operator">&lt;=</span> b<span class="token punctuation">;</span>  <span class="token comment">//一定有一个满足！</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span> x <span class="token operator">=</span> <span class="token operator">!</span><span class="token punctuation">(</span>a <span class="token operator">></span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//对结果进行反转，本来应该是true</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&amp;</span> <span class="token comment">//按位与，注意，返回的是运算后的同类型值，不是boolean！</span>
+<span class="token operator">|</span> <span class="token comment">//按位或</span>
+<span class="token operator">^</span> <span class="token comment">//按位异或 0 ^ 0 = 0</span>
+<span class="token operator">~</span> <span class="token comment">//按位非</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>按位运算实际上是根据值的二进制编码来计算结果，例如按位与，以4bit为例：</li>
 <li>0101 &amp; 0100 &#x3D; 0100 （只有同时为1对应位才得1）</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">7</span>, b = <span class="hljs-number">15</span>;<br>System.out.println(a &amp; b); <span class="hljs-comment">//结果为7</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a <span class="token operator">&amp;</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//结果为7</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h3><ul>
 <li>三目运算符其实是为了简化代码而生，可以根据条件是否满足来决定返回值，格式如下：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">7</span>, b = <span class="hljs-number">15</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> a &gt; b ? <span class="hljs-string">&quot;行&quot;</span> : <span class="hljs-string">&quot;不行&quot;</span>;  <span class="hljs-comment">// 判断条件(只能是boolean,或返回boolean的表达式) ? 满足的返回值 : 不满足的返回值 </span><br>System.out.println(<span class="hljs-string">&quot;汉堡做的行不行？&quot;</span>+str);  <span class="hljs-comment">//汉堡做的行不行？不行</span><br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> str <span class="token operator">=</span> a <span class="token operator">></span> b <span class="token operator">?</span> <span class="token string">"行"</span> <span class="token operator">:</span> <span class="token string">"不行"</span><span class="token punctuation">;</span>  <span class="token comment">// 判断条件(只能是boolean,或返回boolean的表达式) ? 满足的返回值 : 不满足的返回值 </span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"汉堡做的行不行？"</span><span class="token operator">+</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//汉堡做的行不行？不行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <ul>
 <li>此处理解有助于理解后面的if-else语句</li>
@@ -997,6 +1056,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

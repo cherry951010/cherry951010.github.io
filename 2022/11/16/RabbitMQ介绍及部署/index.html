@@ -64,6 +64,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -346,7 +348,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          3.9k 字
         
       </span>
     
@@ -357,7 +359,7 @@
         
         
         
-          35 分钟
+          33 分钟
         
       </span>
     
@@ -468,15 +470,15 @@
 <li>消费者确认接收消息（ACK），RabbitMQ Broker删除已经确认的消息</li>
 <li>关闭信道channel，关闭连接</li>
 </ol>
-<h1 id="部署流程"><a href="#部署流程" class="headerlink" title="部署流程"></a>部署流程</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull rabbitmq<br></code></pre></td></tr></table></figure>
+<h1 id="部署流程"><a href="#部署流程" class="headerlink" title="部署流程"></a>部署流程</h1><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> pull rabbitmq<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/16/zZrzY6.png" srcset="/img/loading.gif" lazyload alt="pull示意"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker images<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> images<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/16/zZsiOH.png" srcset="/img/loading.gif" lazyload alt="查看镜像示意"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/16/zZs1mj.png" srcset="/img/loading.gif" lazyload alt="运行示意"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker ps<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">ps</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/16/zZsYt0.png" srcset="/img/loading.gif" lazyload alt="查看进程"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -id --hostname myrabbit --name rabbitmq1 -p 15672:15672 -p 5672:5672 rabbitmq（安装mq WebUI界面插件）<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run <span class="token parameter variable">-id</span> <span class="token parameter variable">--hostname</span> myrabbit <span class="token parameter variable">--name</span> rabbitmq1 <span class="token parameter variable">-p</span> <span class="token number">15672</span>:15672 <span class="token parameter variable">-p</span> <span class="token number">5672</span>:5672 rabbitmq（安装mq WebUI界面插件）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p><img src="https://s1.ax1x.com/2022/11/16/zZsa1U.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
 <ul>
 <li><p>进入UI界面 ip+端口 默认账户名密码guest<br><img src="https://s1.ax1x.com/2022/11/16/zZs29K.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
@@ -486,7 +488,72 @@
 <li><p>正常进入channel<br><img src="https://s1.ax1x.com/2022/11/16/zZsH4P.png" srcset="/img/loading.gif" lazyload alt="查看结果"></p>
 </li>
 </ul>
-<h1 id="Python使用MQ-demo"><a href="#Python使用MQ-demo" class="headerlink" title="Python使用MQ demo"></a>Python使用MQ demo</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> pika<br><br><span class="hljs-string">&quot;MQ demo&quot;</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MqOperator</span>(<span class="hljs-title class_ inherited__">HeartBeat</span>):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, username, pwd, host</span>):<br>        <span class="hljs-variable language_">self</span>.__user_pwd = pika.PlainCredentials(username, pwd)<br>        <span class="hljs-variable language_">self</span>.__s_conn = pika.BlockingConnection(pika.ConnectionParameters(host,<br>                                                                          heartbeat=<span class="hljs-number">60</span>,<br>                                                                          socket_timeout=<span class="hljs-number">5</span>,<br>                                                                          credentials=<span class="hljs-variable language_">self</span>.__user_pwd))<br>        <span class="hljs-built_in">super</span>(MqOperator, <span class="hljs-variable language_">self</span>).__init__(connection=<span class="hljs-variable language_">self</span>.__s_conn)<br><br>        <span class="hljs-comment"># self.host = host</span><br>        <span class="hljs-comment"># 创建链接</span><br>        <span class="hljs-comment"># self.__s_conn = pika.BlockingConnection(pika.ConnectionParameters(self.host,</span><br>        <span class="hljs-comment">#                                                                   heartbeat=60,</span><br>        <span class="hljs-comment">#                                                                   socket_timeout=5,</span><br>        <span class="hljs-comment">#                                                                   credentials=self.__user_pwd))</span><br>        <span class="hljs-variable language_">self</span>.__channel = <span class="hljs-variable language_">self</span>.__s_conn.channel()<br>        <br>    <span class="hljs-comment"># 生产者</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">product_message</span>(<span class="hljs-params">self, queue_name, routing_key, body, exchange=<span class="hljs-string">&#x27;&#x27;</span></span>):<br>        <span class="hljs-keyword">try</span>:<br><br>            <span class="hljs-variable language_">self</span>.__channel.queue_declare(queue=queue_name)  <span class="hljs-comment"># 声明队列</span><br>            <span class="hljs-variable language_">self</span>.__channel.basic_publish(exchange=exchange,  <span class="hljs-comment"># 交换机</span><br>                                         routing_key=routing_key,  <span class="hljs-comment"># 路由键 写明将消息发往哪个队列，本例是将消息发往队列hello</span><br>                                         body=body,<br>                                         properties=pika.BasicProperties(delivery_mode=<span class="hljs-number">1</span>))  <span class="hljs-comment"># 生产者要发送的消息</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;【生产者】往【<span class="hljs-subst">&#123;queue_name&#125;</span>】队列发送了【<span class="hljs-subst">&#123;body&#125;</span>】&quot;</span>)<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;error&quot;</span>)<br>        <span class="hljs-keyword">finally</span>:<br>            <span class="hljs-comment"># self.__s_conn.close() # 发送完消息关闭链接</span><br>            <span class="hljs-keyword">pass</span><br>        <br>    <span class="hljs-comment"># 消费者</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">consumer_message</span>(<span class="hljs-params">self, queue_name</span>):<br>        <span class="hljs-keyword">try</span>:<br>            <span class="hljs-comment"># self.__channel.queue_declare(queue=queue_name,durable=True)  # 声明队列</span><br>            <span class="hljs-variable language_">self</span>.__channel.basic_consume(on_message_callback=<span class="hljs-variable language_">self</span>.callback, queue=queue_name, auto_ack=<span class="hljs-literal">False</span>)<br>            <span class="hljs-variable language_">self</span>.start()<br>            <span class="hljs-variable language_">self</span>.startHeartBeat()<br>            <span class="hljs-variable language_">self</span>.__channel.start_consuming()<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;connect error&quot;</span>)<br>        <span class="hljs-keyword">finally</span>:<br>            <span class="hljs-comment"># self.__s_conn.close()  # 接收完消息关闭链接</span><br>            <span class="hljs-keyword">pass</span><br>        <br>    <span class="hljs-comment"># 消费时回调函数</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">callback</span>(<span class="hljs-params">self, channel, method, properties, body</span>):<br><br>        <span class="hljs-comment"># body = body.decode(&#x27;urf-8&#x27;)</span><br>        <span class="hljs-comment"># try:</span><br>        <span class="hljs-comment">#     print(f&quot;消费数据：&#123;body&#125;&quot;)</span><br>        <span class="hljs-comment"># except Exception as e:</span><br>        <span class="hljs-comment">#     print(f&quot;error:&#123;e&#125;&quot;)</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;消费者 recv:<span class="hljs-subst">&#123;body&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">import</span> time<br>        time.sleep(<span class="hljs-number">1</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;ok&quot;</span>)<br>        channel.basic_ack(delivery_tag=method.delivery_tag)<br></code></pre></td></tr></table></figure>
+<h1 id="Python使用MQ-demo"><a href="#Python使用MQ-demo" class="headerlink" title="Python使用MQ demo"></a>Python使用MQ demo</h1><figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> threading
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> pika
+
+<span class="token string">"MQ demo"</span>
+<span class="token keyword">class</span> <span class="token class-name">MqOperator</span><span class="token punctuation">(</span>HeartBeat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> username<span class="token punctuation">,</span> pwd<span class="token punctuation">,</span> host<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>__user_pwd <span class="token operator">=</span> pika<span class="token punctuation">.</span>PlainCredentials<span class="token punctuation">(</span>username<span class="token punctuation">,</span> pwd<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>__s_conn <span class="token operator">=</span> pika<span class="token punctuation">.</span>BlockingConnection<span class="token punctuation">(</span>pika<span class="token punctuation">.</span>ConnectionParameters<span class="token punctuation">(</span>host<span class="token punctuation">,</span>
+                                                                          heartbeat<span class="token operator">=</span><span class="token number">60</span><span class="token punctuation">,</span>
+                                                                          socket_timeout<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span>
+                                                                          credentials<span class="token operator">=</span>self<span class="token punctuation">.</span>__user_pwd<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>MqOperator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>connection<span class="token operator">=</span>self<span class="token punctuation">.</span>__s_conn<span class="token punctuation">)</span>
+
+        <span class="token comment"># self.host = host</span>
+        <span class="token comment"># 创建链接</span>
+        <span class="token comment"># self.__s_conn = pika.BlockingConnection(pika.ConnectionParameters(self.host,</span>
+        <span class="token comment">#                                                                   heartbeat=60,</span>
+        <span class="token comment">#                                                                   socket_timeout=5,</span>
+        <span class="token comment">#                                                                   credentials=self.__user_pwd))</span>
+        self<span class="token punctuation">.</span>__channel <span class="token operator">=</span> self<span class="token punctuation">.</span>__s_conn<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        
+    <span class="token comment"># 生产者</span>
+    <span class="token keyword">def</span> <span class="token function">product_message</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> queue_name<span class="token punctuation">,</span> routing_key<span class="token punctuation">,</span> body<span class="token punctuation">,</span> exchange<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+
+            self<span class="token punctuation">.</span>__channel<span class="token punctuation">.</span>queue_declare<span class="token punctuation">(</span>queue<span class="token operator">=</span>queue_name<span class="token punctuation">)</span>  <span class="token comment"># 声明队列</span>
+            self<span class="token punctuation">.</span>__channel<span class="token punctuation">.</span>basic_publish<span class="token punctuation">(</span>exchange<span class="token operator">=</span>exchange<span class="token punctuation">,</span>  <span class="token comment"># 交换机</span>
+                                         routing_key<span class="token operator">=</span>routing_key<span class="token punctuation">,</span>  <span class="token comment"># 路由键 写明将消息发往哪个队列，本例是将消息发往队列hello</span>
+                                         body<span class="token operator">=</span>body<span class="token punctuation">,</span>
+                                         properties<span class="token operator">=</span>pika<span class="token punctuation">.</span>BasicProperties<span class="token punctuation">(</span>delivery_mode<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 生产者要发送的消息</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"【生产者】往【</span><span class="token interpolation"><span class="token punctuation">&#123;</span>queue_name<span class="token punctuation">&#125;</span></span><span class="token string">】队列发送了【</span><span class="token interpolation"><span class="token punctuation">&#123;</span>body<span class="token punctuation">&#125;</span></span><span class="token string">】"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span>
+        <span class="token keyword">finally</span><span class="token punctuation">:</span>
+            <span class="token comment"># self.__s_conn.close() # 发送完消息关闭链接</span>
+            <span class="token keyword">pass</span>
+        
+    <span class="token comment"># 消费者</span>
+    <span class="token keyword">def</span> <span class="token function">consumer_message</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> queue_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token comment"># self.__channel.queue_declare(queue=queue_name,durable=True)  # 声明队列</span>
+            self<span class="token punctuation">.</span>__channel<span class="token punctuation">.</span>basic_consume<span class="token punctuation">(</span>on_message_callback<span class="token operator">=</span>self<span class="token punctuation">.</span>callback<span class="token punctuation">,</span> queue<span class="token operator">=</span>queue_name<span class="token punctuation">,</span> auto_ack<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>startHeartBeat<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>__channel<span class="token punctuation">.</span>start_consuming<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connect error"</span><span class="token punctuation">)</span>
+        <span class="token keyword">finally</span><span class="token punctuation">:</span>
+            <span class="token comment"># self.__s_conn.close()  # 接收完消息关闭链接</span>
+            <span class="token keyword">pass</span>
+        
+    <span class="token comment"># 消费时回调函数</span>
+    <span class="token keyword">def</span> <span class="token function">callback</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> channel<span class="token punctuation">,</span> method<span class="token punctuation">,</span> properties<span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        <span class="token comment"># body = body.decode('urf-8')</span>
+        <span class="token comment"># try:</span>
+        <span class="token comment">#     print(f"消费数据：&#123;body&#125;")</span>
+        <span class="token comment"># except Exception as e:</span>
+        <span class="token comment">#     print(f"error:&#123;e&#125;")</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"消费者 recv:</span><span class="token interpolation"><span class="token punctuation">&#123;</span>body<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">import</span> time
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">)</span>
+        channel<span class="token punctuation">.</span>basic_ack<span class="token punctuation">(</span>delivery_tag<span class="token operator">=</span>method<span class="token punctuation">.</span>delivery_tag<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <h1 id="MQ-WebUI界面"><a href="#MQ-WebUI界面" class="headerlink" title="MQ-WebUI界面"></a>MQ-WebUI界面</h1><ul>
 <li><p>新建队列<br><img src="https://s1.ax1x.com/2022/11/16/zZyVu4.png" srcset="/img/loading.gif" lazyload></p>
 </li>
@@ -899,6 +966,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

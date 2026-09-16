@@ -61,6 +61,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
@@ -343,7 +345,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.9k 字
         
       </span>
     
@@ -412,12 +414,31 @@
 <li>将包通过stfp放到&#x2F;usr&#x2F;java目录下，没有创建</li>
 <li>进入java目录下，解压jdk-17_linux-x64_bin.tar.gz包</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Shell">tar -zxvf jdk-17_linux-x64_bin.tar.gz<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">tar -zxvf jdk-17_linux-x64_bin.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <ol>
 <li>之后配置环境变量</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">第一步</span><br>vim /etc/proflie<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">第二步(这是安装两个版本的，一个版本只需要保留一个即可)</span><br>export JAVA_8_HOME=/usr/java/jdk1.8.0_271<br>export JAVA_17_HOME=/usr/java/jdk-17.0.11<br>export JAVA_HOME=$JAVA_17_HOME<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">第三步，保存后使用命令使配置生效</span><br>source /etc/profile<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">第四步，查看版本</span><br>java -version<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">可以看到如下内容</span><br>java version &quot;17.0.11&quot; 2024-04-16 LTS<br>Java(TM) SE Runtime Environment (build 17.0.11+7-LTS-207)<br>Java HotSpot(TM) 64-Bit Server VM (build 17.0.11+7-LTS-207, mixed mode, sharing)<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell"># 第一步
+vim &#x2F;etc&#x2F;proflie
+
+# 第二步(这是安装两个版本的，一个版本只需要保留一个即可)
+export JAVA_8_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.8.0_271
+export JAVA_17_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk-17.0.11
+export JAVA_HOME&#x3D;$JAVA_17_HOME
+export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH
+export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib&#x2F;dt.jar:$JAVA_HOME&#x2F;lib&#x2F;tools.jar
+
+# 第三步，保存后使用命令使配置生效
+source &#x2F;etc&#x2F;profile
+
+# 第四步，查看版本
+java -version
+
+# 可以看到如下内容
+java version &quot;17.0.11&quot; 2024-04-16 LTS
+Java(TM) SE Runtime Environment (build 17.0.11+7-LTS-207)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.11+7-LTS-207, mixed mode, sharing)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><h2 id="包下载：http-download-redis-io-releases-6-2-7"><a href="#包下载：http-download-redis-io-releases-6-2-7" class="headerlink" title="包下载：http://download.redis.io/releases/  6.2.7"></a>包下载：<a target="_blank" rel="noopener" href="http://download.redis.io/releases/">http://download.redis.io/releases/</a>  6.2.7</h2><p><img src="https://nosblog-1308048668.cos.ap-shanghai.myqcloud.com/image-20241015110159671.png" srcset="/img/loading.gif" lazyload alt="redis版本查看"></p>
 <h2 id="安装过程-2"><a href="#安装过程-2" class="headerlink" title="安装过程"></a>安装过程</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hunanzp/p/12304622.html">https://www.cnblogs.com/hunanzp/p/12304622.html</a></p>
@@ -457,7 +478,7 @@
 <ol start="3">
 <li>sftp远程放到usr&#x2F;cxl文件内，java -jar后台启动命令</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Shell">nohup java -jar vip-project-backend-0.0.1-SNAPSHOT.jar &gt; vipManage.log &amp;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nohup java -jar vip-project-backend-0.0.1-SNAPSHOT.jar &gt; vipManage.log &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 
 <ol start="4">
 <li>查看进程是否启动 ps -ef | grep ‘vip’</li>
@@ -480,7 +501,19 @@
 <ol>
 <li>Linux配置nginx&#x2F;conf&#x2F;nginx.conf文件</li>
 </ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs YAML"><span class="hljs-string">server</span> &#123;<br>        <span class="hljs-string">listen</span> <span class="hljs-number">8002</span><span class="hljs-string">;</span><br>        <span class="hljs-string">server_name</span> <span class="hljs-string">localhost;</span><br><br>        <span class="hljs-string">location</span> <span class="hljs-string">/</span> &#123;<br>             <span class="hljs-comment">#proxy_pass http://127.0.0.1:8002;</span><br>             <span class="hljs-string">root</span> <span class="hljs-string">html/cxl_manager_dist;</span><br>             <span class="hljs-string">index</span> <span class="hljs-string">index.html</span> <span class="hljs-string">index.htm;</span><br>             <span class="hljs-string">try_files</span> <span class="hljs-string">$uri</span> <span class="hljs-string">$uri/</span> <span class="hljs-string">/index.html;</span><br>             <span class="hljs-string">charset</span> <span class="hljs-string">utf-8;</span><br>        &#125;<br><br>   &#125;<br></code></pre></td></tr></table></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-YAML" data-language="YAML"><code class="language-YAML">server &#123;
+        listen 8002;
+        server_name localhost;
+
+        location &#x2F; &#123;
+             #proxy_pass http:&#x2F;&#x2F;127.0.0.1:8002;
+             root html&#x2F;cxl_manager_dist;
+             index index.html index.htm;
+             try_files $uri $uri&#x2F; &#x2F;index.html;
+             charset utf-8;
+        &#125;
+
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 
 <h1 id="访问："><a href="#访问：" class="headerlink" title="访问："></a>访问：</h1><ol>
 <li>nginx的localhost为云服务器公网ip地址，加上8002端口访问前端</li>
@@ -884,6 +917,8 @@
   });
 </script>
 
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
